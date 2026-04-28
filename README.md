@@ -12,6 +12,17 @@ You provide:
 
 The Python package is `netnomos`. The shorter CLI alias is `netn`.
 
+## Citation
+
+```tex
+@inproceedings{he2026netnomos,
+  author    = {Hongyu H{\`e} and Minhao Jin and Maria Apostolaki},
+  title     = {{Making Logic a First-Class Citizen in Network Data Generation with {ML}}},
+  booktitle = {23rd USENIX Symposium on Networked Systems Design and Implementation (NSDI 26)},
+  year      = {2026},
+}
+```
+
 ## 1. Introduction
 
 ### What NetNomos Does
@@ -64,17 +75,6 @@ NetNomos currently provides two rule learners:
 
 - `hitting-set`: enumerates disjunctive rules from evidence sets
 - `tree`: learns implication-style rules using entropy-based decision trees
-
-## Citation
-
-```tex
-@inproceedings{he2026netnomos,
-  author    = {Hongyu H{\`e} and Minhao Jin and Maria Apostolaki},
-  title     = {{Making Logic a First-Class Citizen in Network Data Generation with {ML}}},
-  booktitle = {23rd USENIX Symposium on Networked Systems Design and Implementation (NSDI 26)},
-  year      = {2026},
-}
-```
 
 ## 2. Installation & Setup
 
