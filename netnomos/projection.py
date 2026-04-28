@@ -521,7 +521,11 @@ def project_quantified_family(
 ) -> tuple[Formula, str]:
     terms = tuple(SymbolRef(name) for name in family_fields)
     constant_term = Constant(constant.value)
-    display = f"{template.quantifier} k in {{{', '.join(str(i) for i in range(len(family_fields)))}}}: {family_name}[k] {op.value} {constant.value}"
+    display = (
+        f"{template.quantifier.upper()} k IN "
+        f"{{{', '.join(str(i) for i in range(len(family_fields)))}}}: "
+        f"{family_name}[k] {op.value} {constant.value}"
+    )
     if op in {Comparator.GT, Comparator.GE}:
         agg = "min" if template.quantifier == "forall" else "max"
         return Compare(op.value, FuncCall(agg, terms), constant_term), display

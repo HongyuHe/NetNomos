@@ -90,6 +90,10 @@ def constant(value: Any) -> Constant:
     return Constant(value=value)
 
 
+def render_keyword(value: str) -> str:
+    return value.upper()
+
+
 def formula_to_dict(node: Formula) -> dict[str, Any]:
     if isinstance(node, Compare):
         return {
@@ -194,7 +198,7 @@ def term_to_string(node: Term) -> str:
     if isinstance(node, BinaryTerm):
         return f"({term_to_string(node.left)} {node.op} {term_to_string(node.right)})"
     if isinstance(node, FuncCall):
-        return f"{node.name}({', '.join(term_to_string(v) for v in node.args)})"
+        return f"{render_keyword(node.name)}({', '.join(term_to_string(v) for v in node.args)})"
     raise TypeError(f"Unsupported term node: {type(node)!r}")
 
 
@@ -202,18 +206,23 @@ def formula_to_string(node: Formula) -> str:
     if isinstance(node, Compare):
         return f"{term_to_string(node.left)} {node.op} {term_to_string(node.right)}"
     if isinstance(node, BoolConst):
-        return "true" if node.value else "false"
+        return render_keyword("true") if node.value else render_keyword("false")
     if isinstance(node, BoolNot):
-        return f"not ({formula_to_string(node.value)})"
+        return f"{render_keyword('not')} ({formula_to_string(node.value)})"
     if isinstance(node, BoolAnd):
-        return " and ".join(f"({formula_to_string(v)})" for v in node.values)
+        return f" {render_keyword('and')} ".join(f"({formula_to_string(v)})" for v in node.values)
     if isinstance(node, BoolOr):
-        return " or ".join(f"({formula_to_string(v)})" for v in node.values)
+        return f" {render_keyword('or')} ".join(f"({formula_to_string(v)})" for v in node.values)
     if isinstance(node, Implies):
         return f"({formula_to_string(node.left)}) -> ({formula_to_string(node.right)})"
     if isinstance(node, ForAll):
-        return f"forall {node.variable} in {{{', '.join(map(str, node.domain))}}}: {formula_to_string(node.body)}"
+        return (
+            f"{render_keyword('forall')} {node.variable} {render_keyword('in')} "
+            f"{{{', '.join(map(str, node.domain))}}}: {formula_to_string(node.body)}"
+        )
     if isinstance(node, Exists):
-        return f"exists {node.variable} in {{{', '.join(map(str, node.domain))}}}: {formula_to_string(node.body)}"
+        return (
+            f"{render_keyword('exists')} {node.variable} {render_keyword('in')} "
+            f"{{{', '.join(map(str, node.domain))}}}: {formula_to_string(node.body)}"
+        )
     raise TypeError(f"Unsupported formula node: {type(node)!r}")
-

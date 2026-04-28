@@ -18,6 +18,7 @@ from netnomos.ast import (
     IndexedRef,
     SymbolRef,
     Term,
+    render_keyword,
 )
 from netnomos.semantic_values import lookup_semantic_label
 from netnomos.specs import FieldSpec
@@ -29,18 +30,28 @@ def interpret_formula(
     semantic_values: dict[str, dict[str, dict[str, Any]]] | None = None,
 ) -> str:
     if isinstance(formula, BoolConst):
-        return "true" if formula.value else "false"
+        return render_keyword("true") if formula.value else render_keyword("false")
     if isinstance(formula, Compare):
         return (
             f"{interpret_term(formula.left, fields)} {formula.op} "
             f"{interpret_constant(formula.left, formula.right, fields, semantic_values)}"
         )
     if isinstance(formula, BoolNot):
-        return f"not ({interpret_formula(formula.value, fields, semantic_values)})"
+        return f"{render_keyword('not')} ({interpret_formula(formula.value, fields, semantic_values)})"
     if isinstance(formula, BoolAnd):
-        return " and ".join(f"({interpret_formula(v, fields, semantic_values)})" for v in formula.values)
+        return (
+            f" {render_keyword('and')} ".join(
+                f"({interpret_formula(v, fields, semantic_values)})"
+                for v in formula.values
+            )
+        )
     if isinstance(formula, BoolOr):
-        return " or ".join(f"({interpret_formula(v, fields, semantic_values)})" for v in formula.values)
+        return (
+            f" {render_keyword('or')} ".join(
+                f"({interpret_formula(v, fields, semantic_values)})"
+                for v in formula.values
+            )
+        )
     if isinstance(formula, Implies):
         return (
             f"({interpret_formula(formula.left, fields, semantic_values)}) -> "
@@ -48,12 +59,14 @@ def interpret_formula(
         )
     if isinstance(formula, ForAll):
         return (
-            f"forall {formula.variable} in {{{', '.join(map(str, formula.domain))}}}: "
+            f"{render_keyword('forall')} {formula.variable} {render_keyword('in')} "
+            f"{{{', '.join(map(str, formula.domain))}}}: "
             f"{interpret_formula(formula.body, fields, semantic_values)}"
         )
     if isinstance(formula, Exists):
         return (
-            f"exists {formula.variable} in {{{', '.join(map(str, formula.domain))}}}: "
+            f"{render_keyword('exists')} {formula.variable} {render_keyword('in')} "
+            f"{{{', '.join(map(str, formula.domain))}}}: "
             f"{interpret_formula(formula.body, fields, semantic_values)}"
         )
     raise TypeError(f"Unsupported formula node: {type(formula)!r}")
@@ -69,7 +82,7 @@ def interpret_term(term: Term, fields: dict[str, FieldSpec]) -> str:
     if isinstance(term, BinaryTerm):
         return f"({interpret_term(term.left, fields)} {term.op} {interpret_term(term.right, fields)})"
     if isinstance(term, FuncCall):
-        return f"{term.name}({', '.join(interpret_term(arg, fields) for arg in term.args)})"
+        return f"{render_keyword(term.name)}({', '.join(interpret_term(arg, fields) for arg in term.args)})"
     raise TypeError(f"Unsupported term node: {type(term)!r}")
 
 

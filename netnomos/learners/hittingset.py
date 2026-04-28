@@ -69,7 +69,7 @@ class HittingSetLearner:
         for index, cover in enumerate(covers):
             formulas = tuple(predicates[predicate_index].formula for predicate_index in sorted(cover))
             formula = BoolOr(formulas) if len(formulas) > 1 else formulas[0]
-            display = " or ".join(predicates[predicate_index].display for predicate_index in sorted(cover))
+            display = " OR ".join(predicates[predicate_index].display for predicate_index in sorted(cover))
             support = float(evaluate_formula_df(formula, prepared).mean())
             rules.append(LearnedRule(
                 rule_id=f"hs{index:05d}",
