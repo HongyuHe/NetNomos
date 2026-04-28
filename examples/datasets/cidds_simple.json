@@ -1,0 +1,25 @@
+{
+  "name": "cidds_simple",
+  "description": "CIDDS week 3 flow records",
+  "source": {
+    "type": "csv",
+    "path": "data/cidds_wk3_full.csv"
+  },
+  "fields": [
+    {"name": "DateFirstSeen", "source_name": "Date first seen", "value_type": "string", "roles": ["time"]},
+    {"name": "Duration", "value_type": "real", "roles": ["time", "measurement"]},
+    {"name": "Proto", "value_type": "categorical", "roles": ["proto"]},
+    {"name": "SrcIpAddr", "source_name": "Src IP Addr", "value_type": "categorical", "roles": ["src", "identifier"]},
+    {"name": "SrcPt", "source_name": "Src Pt", "value_type": "integer", "roles": ["src", "identifier"]},
+    {"name": "DstIpAddr", "source_name": "Dst IP Addr", "value_type": "categorical", "roles": ["dst", "identifier"]},
+    {"name": "DstPt", "source_name": "Dst Pt", "value_type": "integer", "roles": ["dst", "identifier"]},
+    {"name": "Packets", "value_type": "integer", "roles": ["count", "measurement"]},
+    {"name": "Bytes", "value_type": "integer", "roles": ["size", "measurement"]},
+    {"name": "Flows", "value_type": "integer", "roles": ["count"]},
+    {"name": "Flags", "value_type": "categorical", "roles": ["flag"]},
+    {"name": "Tos", "value_type": "categorical", "roles": ["measurement"]}
+  ],
+  "ordering_keys": ["DateFirstSeen"],
+  "preprocessing": [],
+  "derived_variables": []
+}

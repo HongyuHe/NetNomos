@@ -1,0 +1,42 @@
+{
+  "name": "simple",
+  "description": "Generic row-wise network predicate space",
+  "max_clause_size": 8,
+  "max_rules": 50000,
+  "predicate_templates": [
+    {
+      "name": "categorical-values",
+      "lhs": {
+        "types": ["categorical", "string", "boolean"]
+      },
+      "operators": ["=", "!="],
+      "rhs_constant": {
+        "mode": "profile",
+        "top_k": 5
+      }
+    },
+    {
+      "name": "numeric-thresholds",
+      "lhs": {
+        "types": ["integer", "real"]
+      },
+      "operators": [">", ">=", "<", "<="],
+      "rhs_constant": {
+        "mode": "profile",
+        "quantiles": [0.25, 0.5, 0.75, 0.9]
+      }
+    },
+    {
+      "name": "numeric-pairs",
+      "lhs": {
+        "types": ["integer", "real"]
+      },
+      "operators": [">", ">=", "<", "<="],
+      "rhs_field": {
+        "types": ["integer", "real"]
+      }
+    }
+  ],
+  "quantifier_templates": []
+}
+

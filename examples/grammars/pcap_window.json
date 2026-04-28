@@ -1,0 +1,249 @@
+{
+  "name": "pcap_window",
+  "description": "Shared TCP packet-window grammar with sequence offsets, payload bounds, and inter-arrival aggregates",
+  "max_clause_size": 8,
+  "max_rules": 10000,
+  "predicate_templates": [
+    {
+      "name": "window-categorical-values",
+      "lhs": {
+        "types": ["categorical", "string", "boolean"],
+        "window_only": true
+      },
+      "operators": ["=", "!="],
+      "rhs_constant": {
+        "mode": "profile",
+        "top_k": 6
+      }
+    },
+    {
+      "name": "size-thresholds",
+      "lhs": {
+        "roles": ["size"],
+        "window_only": true
+      },
+      "operators": [">", ">=", "<", "<="],
+      "rhs_constant": {
+        "mode": "profile",
+        "quantiles": [0.25, 0.5, 0.75, 0.9]
+      }
+    },
+    {
+      "name": "size-zero-bound",
+      "lhs": {
+        "names": ["tcp.len_ctx0", "tcp.len_ctx1", "tcp.len_ctx2"]
+      },
+      "operators": ["=", "!=", "<=", ">="],
+      "rhs_constant": {
+        "mode": "field_constants",
+        "kinds": ["limit"]
+      }
+    },
+    {
+      "name": "seq-offset",
+      "lhs_term": {
+        "kind": "addition",
+        "field": {
+          "context_family": "tcp.seq",
+          "window_only": true
+        },
+        "constant": {
+          "mode": "field_constants",
+          "kinds": ["addition"]
+        }
+      },
+      "operators": ["=", "<=", ">="],
+      "rhs_term": {
+        "kind": "field",
+        "field": {
+          "context_family": "tcp.seq",
+          "window_only": true
+        }
+      }
+    },
+    {
+      "name": "ack-offset",
+      "lhs_term": {
+        "kind": "addition",
+        "field": {
+          "context_family": "tcp.ack",
+          "window_only": true
+        },
+        "constant": {
+          "mode": "field_constants",
+          "kinds": ["addition"]
+        }
+      },
+      "operators": ["=", "<=", ">="],
+      "rhs_term": {
+        "kind": "field",
+        "field": {
+          "context_family": "tcp.ack",
+          "window_only": true
+        }
+      }
+    },
+    {
+      "name": "seq-ack-step-ctx0",
+      "lhs_term": {
+        "kind": "addition",
+        "field": {
+          "names": ["tcp.seq_ctx0"]
+        },
+        "constant": {
+          "mode": "field_constants",
+          "kinds": ["addition"]
+        }
+      },
+      "operators": ["="],
+      "rhs_term": {
+        "kind": "field",
+        "field": {
+          "names": ["tcp.ack_ctx0"]
+        }
+      }
+    },
+    {
+      "name": "seq-ack-step-ctx1",
+      "lhs_term": {
+        "kind": "addition",
+        "field": {
+          "names": ["tcp.seq_ctx1"]
+        },
+        "constant": {
+          "mode": "field_constants",
+          "kinds": ["addition"]
+        }
+      },
+      "operators": ["="],
+      "rhs_term": {
+        "kind": "field",
+        "field": {
+          "names": ["tcp.ack_ctx1"]
+        }
+      }
+    },
+    {
+      "name": "seq-ack-step-ctx2",
+      "lhs_term": {
+        "kind": "addition",
+        "field": {
+          "names": ["tcp.seq_ctx2"]
+        },
+        "constant": {
+          "mode": "field_constants",
+          "kinds": ["addition"]
+        }
+      },
+      "operators": ["="],
+      "rhs_term": {
+        "kind": "field",
+        "field": {
+          "names": ["tcp.ack_ctx2"]
+        }
+      }
+    },
+    {
+      "name": "seq-frame-len-bound-ctx0",
+      "lhs_term": {
+        "kind": "addition",
+        "field": {
+          "names": ["tcp.seq_ctx0"]
+        },
+        "other_field": {
+          "names": ["frame.len_ctx0"]
+        }
+      },
+      "operators": ["<=", "="],
+      "rhs_term": {
+        "kind": "field",
+        "field": {
+          "names": ["tcp.ack_ctx0"]
+        }
+      }
+    },
+    {
+      "name": "seq-frame-len-bound-ctx1",
+      "lhs_term": {
+        "kind": "addition",
+        "field": {
+          "names": ["tcp.seq_ctx1"]
+        },
+        "other_field": {
+          "names": ["frame.len_ctx1"]
+        }
+      },
+      "operators": ["<=", "="],
+      "rhs_term": {
+        "kind": "field",
+        "field": {
+          "names": ["tcp.ack_ctx1"]
+        }
+      }
+    },
+    {
+      "name": "seq-frame-len-bound-ctx2",
+      "lhs_term": {
+        "kind": "addition",
+        "field": {
+          "names": ["tcp.seq_ctx2"]
+        },
+        "other_field": {
+          "names": ["frame.len_ctx2"]
+        }
+      },
+      "operators": ["<=", "="],
+      "rhs_term": {
+        "kind": "field",
+        "field": {
+          "names": ["tcp.ack_ctx2"]
+        }
+      }
+    },
+    {
+      "name": "interarrival-thresholds",
+      "lhs": {
+        "names": [
+          "interarrival_01",
+          "interarrival_12",
+          "interarrival_min",
+          "interarrival_max",
+          "interarrival_std"
+        ]
+      },
+      "operators": [">", ">=", "<", "<="],
+      "rhs_constant": {
+        "mode": "profile",
+        "quantiles": [0.25, 0.5, 0.75, 0.9]
+      }
+    }
+  ],
+  "quantifier_templates": [
+    {
+      "name": "payload-forall",
+      "quantifier": "forall",
+      "selector": {
+        "context_family": "tcp.len",
+        "window_only": true
+      },
+      "operators": [">=", "<="],
+      "constant": {
+        "mode": "profile",
+        "quantiles": [0.25, 0.5, 0.75]
+      }
+    },
+    {
+      "name": "payload-exists",
+      "quantifier": "exists",
+      "selector": {
+        "context_family": "tcp.len",
+        "window_only": true
+      },
+      "operators": [">=", "<="],
+      "constant": {
+        "mode": "profile",
+        "quantiles": [0.25, 0.5, 0.75]
+      }
+    }
+  ]
+}

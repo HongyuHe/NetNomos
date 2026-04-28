@@ -1,0 +1,143 @@
+{
+  "name": "pcap_tcp",
+  "description": "Unified TCP packet schema for raw PCAP inputs and legacy CSV exports",
+  "source": {
+    "type": "auto",
+    "path": "data/netflix.pcap"
+  },
+  "fields": [
+    {"name": "frame.number", "value_type": "integer", "roles": ["identifier"]},
+    {"name": "frame.time_epoch", "value_type": "real", "roles": ["time"]},
+    {"name": "frame.len", "value_type": "integer", "roles": ["size", "measurement"]},
+    {"name": "ip.src", "value_type": "categorical", "roles": ["src", "identifier"]},
+    {"name": "ip.dst", "value_type": "categorical", "roles": ["dst", "identifier"]},
+    {"name": "tcp.srcport", "value_type": "categorical", "roles": ["src", "identifier"]},
+    {"name": "tcp.dstport", "value_type": "categorical", "roles": ["dst", "identifier"]},
+    {"name": "tcp.flags", "value_type": "categorical", "roles": ["flag"]},
+    {
+      "name": "tcp.len",
+      "value_type": "integer",
+      "roles": ["size", "measurement"],
+      "constants": [
+        {"kind": "limit", "values": [0], "description": "Pure ACK packets carry zero TCP payload"}
+      ]
+    },
+    {
+      "name": "tcp.seq",
+      "value_type": "integer",
+      "roles": ["sequence"],
+      "constants": [
+        {"kind": "addition", "values": [1], "description": "TCP sequence increments often advance by one on control packets"}
+      ]
+    },
+    {
+      "name": "tcp.ack",
+      "value_type": "integer",
+      "roles": ["sequence"],
+      "constants": [
+        {"kind": "addition", "values": [1], "description": "TCP acknowledgements often advance by one on control packets"}
+      ]
+    },
+    {"name": "tcp.window_size_value", "value_type": "integer", "roles": ["measurement"]},
+    {"name": "_ws.col.protocol", "value_type": "categorical", "roles": ["proto"]}
+  ],
+  "include_fields": [
+    "frame.number",
+    "frame.time_epoch",
+    "frame.len",
+    "ip.src",
+    "ip.dst",
+    "tcp.srcport",
+    "tcp.dstport",
+    "tcp.flags",
+    "tcp.len",
+    "tcp.seq",
+    "tcp.ack",
+    "tcp.window_size_value"
+  ],
+  "ordering_keys": ["frame.time_epoch", "frame.number"],
+  "preprocessing": [
+    {
+      "kind": "filter_equals",
+      "columns": ["_ws.col.protocol"],
+      "value": "TCP"
+    },
+    {
+      "kind": "parse_hex",
+      "columns": ["tcp.flags"]
+    },
+    {
+      "kind": "filter_present",
+      "columns": [
+        "ip.src",
+        "ip.dst",
+        "tcp.srcport",
+        "tcp.dstport",
+        "tcp.flags",
+        "tcp.len",
+        "tcp.seq",
+        "tcp.ack",
+        "tcp.window_size_value"
+      ]
+    },
+    {
+      "kind": "cast",
+      "columns": [
+        "frame.number",
+        "frame.len",
+        "tcp.srcport",
+        "tcp.dstport",
+        "tcp.flags",
+        "tcp.len",
+        "tcp.seq",
+        "tcp.ack",
+        "tcp.window_size_value"
+      ],
+      "dtype": "int64"
+    }
+  ],
+  "context_window": {
+    "size": 3,
+    "stride": 1,
+    "partition_by": ["ip.src", "ip.dst", "tcp.srcport", "tcp.dstport"],
+    "order_by": ["frame.time_epoch", "frame.number"],
+    "column_template": "{name}_ctx{index}"
+  },
+  "derived_variables": [
+    {
+      "name": "interarrival_01",
+      "operation": "diff",
+      "inputs": ["frame.time_epoch_ctx1", "frame.time_epoch_ctx0"],
+      "value_type": "real",
+      "roles": ["time", "measurement", "derived"]
+    },
+    {
+      "name": "interarrival_12",
+      "operation": "diff",
+      "inputs": ["frame.time_epoch_ctx2", "frame.time_epoch_ctx1"],
+      "value_type": "real",
+      "roles": ["time", "measurement", "derived"]
+    },
+    {
+      "name": "interarrival_min",
+      "operation": "min",
+      "inputs": ["interarrival_01", "interarrival_12"],
+      "value_type": "real",
+      "roles": ["time", "measurement", "derived"]
+    },
+    {
+      "name": "interarrival_max",
+      "operation": "max",
+      "inputs": ["interarrival_01", "interarrival_12"],
+      "value_type": "real",
+      "roles": ["time", "measurement", "derived"]
+    },
+    {
+      "name": "interarrival_std",
+      "operation": "std",
+      "inputs": ["interarrival_01", "interarrival_12"],
+      "value_type": "real",
+      "roles": ["time", "measurement", "derived"]
+    }
+  ]
+}

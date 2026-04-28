@@ -1,0 +1,27 @@
+[project]
+name = "netnomos"
+version = "0.1.0"
+description = "Declarative rule mining for network datasets"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26.4",
+  "pandas>=2.2.3",
+  "pydantic>=2.11.0",
+  "rich>=14.2.0",
+  "scapy>=2.6.0",
+  "scikit-learn>=1.7.1",
+  "tqdm>=4.67.1",
+  "z3-solver>=4.15.3.0",
+]
+
+[project.scripts]
+netn = "netnomos.cli:main"
+netnomos = "netnomos.cli:main"
+
+[build-system]
+requires = ["hatchling>=1.27.0"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = true

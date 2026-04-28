@@ -1,0 +1,444 @@
+{
+    "name": "cidds",
+    "description": "CIDDS week 3 flow records with mapped subnet and port classes",
+    "source": {
+        "type": "csv",
+        "path": "data/cidds_wk3_full.csv"
+    },
+    "fields": [
+        {
+            "name": "DateFirstSeen",
+            "source_name": "Date first seen",
+            "value_type": "string",
+            "roles": [
+                "time"
+            ]
+        },
+        {
+            "name": "Duration",
+            "value_type": "real",
+            "roles": [
+                "time",
+                "measurement"
+            ]
+        },
+        {
+            "name": "Proto",
+            "value_type": "categorical",
+            "roles": [
+                "proto"
+            ]
+        },
+        {
+            "name": "SrcIpAddr",
+            "source_name": "Src IP Addr",
+            "value_type": "categorical",
+            "roles": [
+                "src",
+                "identifier"
+            ]
+        },
+        {
+            "name": "SrcPt",
+            "source_name": "Src Pt",
+            "value_type": "integer",
+            "roles": [
+                "src",
+                "identifier"
+            ]
+        },
+        {
+            "name": "DstIpAddr",
+            "source_name": "Dst IP Addr",
+            "value_type": "categorical",
+            "roles": [
+                "dst",
+                "identifier"
+            ]
+        },
+        {
+            "name": "DstPt",
+            "source_name": "Dst Pt",
+            "value_type": "integer",
+            "roles": [
+                "dst",
+                "identifier"
+            ]
+        },
+        {
+            "name": "SrcSubnet",
+            "value_type": "integer",
+            "roles": [
+                "src",
+                "identifier"
+            ],
+            "constants": [
+                {
+                    "kind": "assignment",
+                    "values": [
+                        0,
+                        100,
+                        200,
+                        210,
+                        220,
+                        666,
+                        888
+                    ],
+                    "description": "CIDDS subnet classes"
+                }
+            ],
+            "enum_labels": {
+                "0": "unspecified",
+                "100": "servers",
+                "200": "management",
+                "210": "office",
+                "220": "developer",
+                "666": "public",
+                "888": "dns"
+            }
+        },
+        {
+            "name": "DstSubnet",
+            "value_type": "integer",
+            "roles": [
+                "dst",
+                "identifier"
+            ],
+            "constants": [
+                {
+                    "kind": "assignment",
+                    "values": [
+                        0,
+                        100,
+                        200,
+                        210,
+                        220,
+                        666,
+                        888
+                    ],
+                    "description": "CIDDS subnet classes"
+                }
+            ],
+            "enum_labels": {
+                "0": "unspecified",
+                "100": "servers",
+                "200": "management",
+                "210": "office",
+                "220": "developer",
+                "666": "public",
+                "888": "dns"
+            }
+        },
+        {
+            "name": "SrcPortClass",
+            "value_type": "integer",
+            "roles": [
+                "src",
+                "identifier"
+            ],
+            "constants": [
+                {
+                    "kind": "assignment",
+                    "values": [
+                        53,
+                        80,
+                        443,
+                        70000,
+                        71000,
+                        72000
+                    ],
+                    "description": "CIDDS port categories"
+                }
+            ],
+            "enum_labels": {
+                "53": "dns",
+                "80": "http",
+                "443": "https",
+                "70000": "well_known",
+                "71000": "registered",
+                "72000": "dynamic"
+            }
+        },
+        {
+            "name": "DstPortClass",
+            "value_type": "integer",
+            "roles": [
+                "dst",
+                "identifier"
+            ],
+            "constants": [
+                {
+                    "kind": "assignment",
+                    "values": [
+                        53,
+                        80,
+                        443,
+                        70000,
+                        71000,
+                        72000
+                    ],
+                    "description": "CIDDS port categories"
+                }
+            ],
+            "enum_labels": {
+                "53": "dns",
+                "80": "http",
+                "443": "https",
+                "70000": "well_known",
+                "71000": "registered",
+                "72000": "dynamic"
+            }
+        },
+        {
+            "name": "Packets",
+            "value_type": "integer",
+            "roles": [
+                "count",
+                "measurement"
+            ],
+            "constants": [
+                {
+                    "kind": "scalar",
+                    "values": [
+                        65535
+                    ],
+                    "description": "Maximum payload size per packet"
+                }
+            ]
+        },
+        {
+            "name": "Bytes",
+            "value_type": "integer",
+            "roles": [
+                "size",
+                "measurement"
+            ],
+            "constants": [
+                {
+                    "kind": "limit",
+                    "values": [
+                        64,
+                        1500
+                    ],
+                    "description": "Common packet-size bounds"
+                },
+                {
+                    "kind": "addition",
+                    "values": [
+                        20,
+                        40
+                    ],
+                    "description": "Header-size offsets"
+                }
+            ]
+        },
+        {
+            "name": "Flows",
+            "value_type": "integer",
+            "roles": [
+                "count"
+            ]
+        },
+        {
+            "name": "Flags",
+            "value_type": "categorical",
+            "roles": [
+                "flag"
+            ]
+        },
+        {
+            "name": "Tos",
+            "value_type": "categorical",
+            "roles": [
+                "measurement"
+            ]
+        }
+    ],
+    "include_fields": [
+        "Duration",
+        "Proto",
+        "SrcSubnet",
+        "DstSubnet",
+        "SrcPortClass",
+        "DstPortClass",
+        "Packets",
+        "Bytes",
+        "Flags",
+        "Tos"
+    ],
+    "exclude_fields": [
+        "Flows"
+    ],
+    "ordering_keys": [
+        "DateFirstSeen"
+    ],
+    "preprocessing": [
+        {
+            "kind": "map_rules",
+            "columns": [
+                "SrcPt"
+            ],
+            "target_column": "SrcPortClass",
+            "rules": [
+                {
+                    "mode": "equals",
+                    "value": 53,
+                    "output": 53
+                },
+                {
+                    "mode": "equals",
+                    "value": 80,
+                    "output": 80
+                },
+                {
+                    "mode": "equals",
+                    "value": 443,
+                    "output": 443
+                },
+                {
+                    "mode": "range",
+                    "lower": 0,
+                    "upper": 1023,
+                    "output": 70000
+                },
+                {
+                    "mode": "range",
+                    "lower": 1024,
+                    "upper": 49151,
+                    "output": 71000
+                },
+                {
+                    "mode": "default",
+                    "output": 72000
+                }
+            ]
+        },
+        {
+            "kind": "map_rules",
+            "columns": [
+                "DstPt"
+            ],
+            "target_column": "DstPortClass",
+            "rules": [
+                {
+                    "mode": "equals",
+                    "value": 53,
+                    "output": 53
+                },
+                {
+                    "mode": "equals",
+                    "value": 80,
+                    "output": 80
+                },
+                {
+                    "mode": "equals",
+                    "value": 443,
+                    "output": 443
+                },
+                {
+                    "mode": "range",
+                    "lower": 0,
+                    "upper": 1023,
+                    "output": 70000
+                },
+                {
+                    "mode": "range",
+                    "lower": 1024,
+                    "upper": 49151,
+                    "output": 71000
+                },
+                {
+                    "mode": "default",
+                    "output": 72000
+                }
+            ]
+        },
+        {
+            "kind": "map_rules",
+            "columns": [
+                "SrcIpAddr"
+            ],
+            "target_column": "SrcSubnet",
+            "rules": [
+                {
+                    "mode": "equals",
+                    "value": "0.0.0.0",
+                    "output": 0
+                },
+                {
+                    "mode": "equals",
+                    "value": "DNS",
+                    "output": 888
+                },
+                {
+                    "mode": "prefix",
+                    "value": "192.168.100.",
+                    "output": 100
+                },
+                {
+                    "mode": "prefix",
+                    "value": "192.168.200.",
+                    "output": 200
+                },
+                {
+                    "mode": "prefix",
+                    "value": "192.168.210.",
+                    "output": 210
+                },
+                {
+                    "mode": "prefix",
+                    "value": "192.168.220.",
+                    "output": 220
+                },
+                {
+                    "mode": "default",
+                    "output": 666
+                }
+            ]
+        },
+        {
+            "kind": "map_rules",
+            "columns": [
+                "DstIpAddr"
+            ],
+            "target_column": "DstSubnet",
+            "rules": [
+                {
+                    "mode": "equals",
+                    "value": "0.0.0.0",
+                    "output": 0
+                },
+                {
+                    "mode": "equals",
+                    "value": "DNS",
+                    "output": 888
+                },
+                {
+                    "mode": "prefix",
+                    "value": "192.168.100.",
+                    "output": 100
+                },
+                {
+                    "mode": "prefix",
+                    "value": "192.168.200.",
+                    "output": 200
+                },
+                {
+                    "mode": "prefix",
+                    "value": "192.168.210.",
+                    "output": 210
+                },
+                {
+                    "mode": "prefix",
+                    "value": "192.168.220.",
+                    "output": 220
+                },
+                {
+                    "mode": "default",
+                    "output": 666
+                }
+            ]
+        }
+    ],
+    "derived_variables": []
+}

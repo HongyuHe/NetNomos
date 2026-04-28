@@ -1,0 +1,79 @@
+{
+  "name": "metadc_agg",
+  "description": "MetaDC aggregate and context-window grammar aligned with the original aggregate-focused learner",
+  "max_clause_size": 8,
+  "max_rules": 20000,
+  "predicate_templates": [
+    {
+      "name": "agg-zero-thresholds",
+      "lhs": {
+        "regex": "Agg$"
+      },
+      "operators": [">", ">=", "=", "!=", "<=", "<"],
+      "rhs_constant": {
+        "mode": "field_constants",
+        "kinds": ["limit"]
+      }
+    },
+    {
+      "name": "agg-quantiles",
+      "lhs": {
+        "regex": "Agg$"
+      },
+      "operators": [">", ">=", "<", "<="],
+      "rhs_constant": {
+        "mode": "profile",
+        "quantiles": [0.25, 0.5, 0.75, 0.9]
+      }
+    },
+    {
+      "name": "ctx-quantiles",
+      "lhs": {
+        "regex": "Ctx\\d+$",
+        "window_only": true
+      },
+      "operators": [">", ">=", "<", "<="],
+      "rhs_constant": {
+        "mode": "profile",
+        "quantiles": [0.25, 0.5, 0.75, 0.9]
+      }
+    },
+    {
+      "name": "ingress-sample-thresholds",
+      "lhs": {
+        "regex": "^IngressBytes\\d+$"
+      },
+      "operators": [">", ">=", "<", "<="],
+      "rhs_constant": {
+        "mode": "profile",
+        "quantiles": [0.25, 0.5, 0.75, 0.9]
+      }
+    }
+  ],
+  "quantifier_templates": [
+    {
+      "name": "ctx-forall",
+      "quantifier": "forall",
+      "selector": {
+        "window_only": true
+      },
+      "operators": [">=", "<="],
+      "constant": {
+        "mode": "profile",
+        "quantiles": [0.25, 0.5, 0.75]
+      }
+    },
+    {
+      "name": "ctx-exists",
+      "quantifier": "exists",
+      "selector": {
+        "window_only": true
+      },
+      "operators": [">=", "<="],
+      "constant": {
+        "mode": "profile",
+        "quantiles": [0.25, 0.5, 0.75]
+      }
+    }
+  ]
+}

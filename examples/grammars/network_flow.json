@@ -1,0 +1,91 @@
+{
+  "name": "network_flow",
+  "description": "Grammar using assignment, scalar, and addition predicate forms",
+  "max_clause_size": 10,
+  "max_rules": 1000,
+  "predicate_templates": [
+    {
+      "name": "mapped-assignments",
+      "lhs": {
+        "names": ["SrcSubnet", "DstSubnet", "SrcPortClass", "DstPortClass"]
+      },
+      "operators": ["=", "!="],
+      "rhs_constant": {
+        "mode": "field_constants",
+        "kinds": ["assignment"]
+      }
+    },
+    {
+      "name": "numeric-thresholds",
+      "lhs": {
+        "types": ["integer", "real"],
+        "exclude": ["SrcSubnet", "DstSubnet", "SrcPortClass", "DstPortClass"]
+      },
+      "operators": [">", ">=", "<", "<="],
+      "rhs_constant": {
+        "mode": "profile",
+        "quantiles": [0.25, 0.5, 0.75, 0.9]
+      }
+    },
+    {
+      "name": "packet-capacity",
+      "lhs_term": {
+        "kind": "scalar",
+        "field": {
+          "names": ["Packets"]
+        },
+        "constant": {
+          "mode": "field_constants",
+          "kinds": ["scalar"]
+        }
+      },
+      "operators": ["<=", ">="],
+      "rhs_term": {
+        "kind": "field",
+        "field": {
+          "names": ["Bytes"]
+        }
+      }
+    },
+    {
+      "name": "numeric-offsets",
+      "lhs_term": {
+        "kind": "addition",
+        "field": {
+          "roles": ["size"]
+        },
+        "constant": {
+          "mode": "field_constants",
+          "kinds": ["addition"]
+        }
+      },
+      "operators": ["<=", ">="],
+      "rhs_term": {
+        "kind": "field",
+        "field": {
+          "roles": ["size"]
+        }
+      }
+    },
+    {
+      "name": "numeric-sums",
+      "lhs_term": {
+        "kind": "addition",
+        "field": {
+          "roles": ["size"]
+        },
+        "other_field": {
+          "roles": ["size"]
+        }
+      },
+      "operators": ["<=", ">="],
+      "rhs_term": {
+        "kind": "field",
+        "field": {
+          "roles": ["size"]
+        }
+      }
+    }
+  ],
+  "quantifier_templates": []
+}

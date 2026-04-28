@@ -1,0 +1,63 @@
+{
+  "name": "metadc",
+  "description": "MetaDC telemetry with pre-materialized context fields",
+  "source": {
+    "type": "csv",
+    "path": "data/metadc_test_10racks_5ctx.csv"
+  },
+  "fields": [
+    {"name": "rackid", "value_type": "categorical", "roles": ["src", "identifier"]},
+    {"name": "hostid", "value_type": "categorical", "roles": ["dst", "identifier"]},
+    {
+      "name": "IngressBytesAgg",
+      "value_type": "integer",
+      "roles": ["size", "measurement"],
+      "constants": [
+        {"kind": "limit", "values": [0], "description": "Zero-traffic aggregate"}
+      ]
+    },
+    {
+      "name": "EgressBytesAgg",
+      "value_type": "integer",
+      "roles": ["size", "measurement"],
+      "constants": [
+        {"kind": "limit", "values": [0], "description": "Zero-traffic aggregate"}
+      ]
+    },
+    {
+      "name": "InRxmitBytesAgg",
+      "value_type": "integer",
+      "roles": ["size", "measurement"],
+      "constants": [
+        {"kind": "limit", "values": [0], "description": "Zero retransmit aggregate"}
+      ]
+    },
+    {
+      "name": "OutRxmitBytesAgg",
+      "value_type": "integer",
+      "roles": ["size", "measurement"],
+      "constants": [
+        {"kind": "limit", "values": [0], "description": "Zero retransmit aggregate"}
+      ]
+    },
+    {
+      "name": "InCongestionBytesAgg",
+      "value_type": "integer",
+      "roles": ["size", "measurement"],
+      "constants": [
+        {"kind": "limit", "values": [0], "description": "Zero congestion aggregate"}
+      ]
+    },
+    {
+      "name": "ConnectionsAgg",
+      "value_type": "integer",
+      "roles": ["count", "measurement"],
+      "constants": [
+        {"kind": "limit", "values": [0], "description": "Zero active connections"}
+      ]
+    }
+  ],
+  "grouping_keys": ["rackid", "hostid"],
+  "ordering_keys": [],
+  "derived_variables": []
+}
