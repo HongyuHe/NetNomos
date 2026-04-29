@@ -21,8 +21,11 @@ netn = "netnomos.cli:main"
 netnomos = "netnomos.cli:main"
 
 [build-system]
-requires = ["hatchling>=1.27.0"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=80.0.0", "wheel>=0.45.1", "pybind11>=3.0.1"]
+build-backend = "setuptools.build_meta"
 
 [tool.uv]
 package = true
+
+[tool.setuptools.packages.find]
+include = ["netnomos*"]

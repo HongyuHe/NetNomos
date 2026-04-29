@@ -100,6 +100,12 @@ class LearnerKind(str, Enum):
     TREE = "tree"
 
 
+class HittingSetBackend(str, Enum):
+    AUTO = "auto"
+    NATIVE = "native"
+    PYTHON = "python"
+
+
 class SourceSpec(StrictModel):
     type: SourceType
     path: str | None = None

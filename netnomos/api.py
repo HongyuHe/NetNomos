@@ -16,7 +16,14 @@ from netnomos.learners import EntropyTreeLearner, HittingSetLearner, LearnedRule
 from netnomos.logging_utils import get_logger
 from netnomos.projection import GroundedPredicate, generate_predicates
 from netnomos.semantic_values import build_semantic_value_catalog
-from netnomos.specs import DatasetSpec, GrammarSpec, LearnerKind, load_dataset_spec, load_grammar_spec
+from netnomos.specs import (
+    DatasetSpec,
+    GrammarSpec,
+    HittingSetBackend,
+    LearnerKind,
+    load_dataset_spec,
+    load_grammar_spec,
+)
 from netnomos.theory import Theory
 
 log = get_logger("api")
@@ -63,6 +70,7 @@ class NetNomosMiner:
         learner: LearnerKind | str = LearnerKind.HITTING_SET,
         limit: int | None = None,
         stall_timeout: float | None = None,
+        hitting_set_backend: HittingSetBackend | str = HittingSetBackend.AUTO,
     ) -> MiningResult:
         prepared = self.prepare(input_path=input_path, limit=limit)
         predicates = generate_predicates(prepared, self.grammar_spec)
@@ -73,12 +81,16 @@ class NetNomosMiner:
                 max_clause_size=self.grammar_spec.max_clause_size,
                 max_rules=self.grammar_spec.max_rules,
                 stall_timeout=stall_timeout,
+                backend=hitting_set_backend,
             )
             rules = backend.fit(predicates, prepared, evidence_cache_path=evidence_cache_path)
         else:
-            if stall_timeout is not None:
+            if stall_timeout is not None or HittingSetBackend(hitting_set_backend) != HittingSetBackend.AUTO:
                 log.warning(
-                    "Ignoring stall timeout for learner '%s'; it only applies to the hitting-set backend.",
+                    (
+                        "Ignoring hitting-set specific options for learner '%s'; stall timeout and "
+                        "hitting-set backend selection only apply to the hitting-set learner."
+                    ),
                     learner_kind.value,
                 )
             backend = EntropyTreeLearner(
@@ -87,11 +99,15 @@ class NetNomosMiner:
             )
             rules = backend.fit(predicates, prepared)
         fit_metadata = getattr(backend, "last_fit_metadata", {})
-        if learner_kind != LearnerKind.HITTING_SET and stall_timeout is not None:
+        if learner_kind != LearnerKind.HITTING_SET and (
+            stall_timeout is not None or HittingSetBackend(hitting_set_backend) != HittingSetBackend.AUTO
+        ):
             fit_metadata = {
                 **fit_metadata,
                 "stall_timeout_seconds": stall_timeout,
-                "stall_timeout_ignored": True,
+                "stall_timeout_ignored": stall_timeout is not None,
+                "hitting_set_backend_requested": HittingSetBackend(hitting_set_backend).value,
+                "hitting_set_backend_ignored": True,
             }
         semantic_values = build_semantic_value_catalog(predicates)
         interpreted_predicates = [

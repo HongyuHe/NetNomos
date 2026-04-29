@@ -73,7 +73,7 @@ The grammar defines the predicate space that NetNomos may explore. It specifies:
 
 NetNomos currently provides two rule learners:
 
-- `hitting-set`: enumerates disjunctive rules from evidence sets
+- `hitting-set`: enumerates disjunctive rules from evidence sets, with both a native `pybind11`/C++ search core and a pure Python fallback backend
 - `tree`: learns implication-style rules using entropy-based decision trees
 
 ## 2. Installation & Setup
@@ -82,6 +82,7 @@ NetNomos currently provides two rule learners:
 
 - Python `>=3.10`
 - [`uv`](https://docs.astral.sh/uv/) for dependency management and command execution
+- a C++ toolchain if you want the native hitting-set backend built locally during `uv sync`
 
 ### Setup
 
@@ -98,6 +99,8 @@ uv run netnomos --help
 #* Or just use the alias:
 uv run netn --help
 ```
+
+`uv sync` builds the native hitting-set extension automatically. If the extension is unavailable, NetNomos falls back to the pure Python backend unless you explicitly request `--hittingset-backend native`.
 
 Expected repository locations:
 
@@ -185,6 +188,7 @@ Examples:
 | --- | --- | --- | --- | --- |
 | `--learner` | `mine`, `validate`, `interpret`, `entails` | `hitting-set` | Selects the learning backend when the command needs to mine rules. | `--learner tree` |
 | `--stall-timeout` | `mine`, `validate`, `interpret`, `entails` | `None` | Stops the hitting-set learner after this many seconds without a new rule. Partial results are returned and saved. Ignored by `tree`. | `--stall-timeout 60` |
+| `--hittingset-backend` | `mine`, `validate`, `interpret`, `entails` | `auto` | Selects the hitting-set implementation: `native` uses the C++ core, `python` keeps the original Python search, and `auto` prefers `native` when available. Ignored by `tree`. | `--hittingset-backend native` |
 | `--runs-dir` | `mine`, `validate`, `interpret`, `entails` | `runs` | Directory where mined artifacts and cache metadata are stored. | `--runs-dir tmp/runs` |
 | `--rules` | `validate`, `interpret`, `entails` | `None` | Uses an existing `rules.json` artifact instead of mining a fresh rule set. | `--rules runs/<run>/rules.json` |
 | `--query` | `entails` | required | Formula string to check against a theory. | `--query "Packets * 65535 >= Bytes"` |
@@ -276,6 +280,16 @@ If the search stalls, NetNomos:
 - logs a warning on stderr
 - returns the rules found so far
 - records `search_stopped_early`, `stop_reason`, and `stall_timeout_seconds` in `fit_metadata`
+
+Force the original Python search backend:
+
+```bash
+uv run netn mine \
+  --dataset-spec examples/datasets/cidds.json \
+  --grammar-spec examples/grammars/network_flow.json \
+  --input data/cidds_wk2_normal_10k.csv \
+  --hittingset-backend python
+```
 
 </details>
 
@@ -688,6 +702,8 @@ Grammar files are `GrammarSpec` JSON documents. They define the search space of 
 | `quantifier_templates` | Allowed quantified window patterns | Builds projected quantifier predicates |
 
 </details>
+
+The hitting-set grammar limits apply to both backends. The native backend only replaces the core enumeration step; evidence construction, rule assembly, interpretation, and artifact writing remain in Python.
 
 ### Operators
 

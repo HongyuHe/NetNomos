@@ -11,7 +11,7 @@ from rich.json import JSON
 from netnomos.api import NetNomosMiner
 from netnomos.dsl import parse_formula
 from netnomos.logging_utils import configure_logging
-from netnomos.specs import GrammarSpec, LearnerKind, load_dataset_spec, load_grammar_spec
+from netnomos.specs import GrammarSpec, HittingSetBackend, LearnerKind, load_dataset_spec, load_grammar_spec
 
 
 class CliFormatter(argparse.ArgumentDefaultsHelpFormatter, argparse.RawDescriptionHelpFormatter):
@@ -77,6 +77,18 @@ def add_stall_timeout_arg(parser: argparse.ArgumentParser) -> None:
         help=(
             "Stop the hitting-set search after this many seconds without discovering a new rule. "
             "Ignored by the tree learner."
+        ),
+    )
+
+
+def add_hittingset_backend_arg(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument(
+        "--hittingset-backend",
+        choices=[item.value for item in HittingSetBackend],
+        default=HittingSetBackend.AUTO.value,
+        help=(
+            "Implementation for the hitting-set learner: native uses the pybind11 C++ core, python "
+            "keeps the pure Python search, and auto prefers native when available."
         ),
     )
 
@@ -169,6 +181,7 @@ def build_parser() -> argparse.ArgumentParser:
     add_limit_arg(mine)
     add_learner_arg(mine)
     add_stall_timeout_arg(mine)
+    add_hittingset_backend_arg(mine)
     add_runs_dir_arg(mine)
 
     validate = subparsers.add_parser(
@@ -187,6 +200,7 @@ def build_parser() -> argparse.ArgumentParser:
     add_rules_arg(validate)
     add_learner_arg(validate)
     add_stall_timeout_arg(validate)
+    add_hittingset_backend_arg(validate)
     add_runs_dir_arg(validate)
 
     interpret = subparsers.add_parser(
@@ -205,6 +219,7 @@ def build_parser() -> argparse.ArgumentParser:
     add_rules_arg(interpret)
     add_learner_arg(interpret)
     add_stall_timeout_arg(interpret)
+    add_hittingset_backend_arg(interpret)
     add_runs_dir_arg(interpret)
     add_output_arg(interpret)
 
@@ -225,6 +240,7 @@ def build_parser() -> argparse.ArgumentParser:
     add_query_arg(entails)
     add_learner_arg(entails)
     add_stall_timeout_arg(entails)
+    add_hittingset_backend_arg(entails)
     add_runs_dir_arg(entails)
 
     return parser
@@ -256,6 +272,7 @@ def build_fit_kwargs(args: argparse.Namespace) -> dict[str, object]:
         "learner": getattr(args, "learner", LearnerKind.HITTING_SET.value),
         "limit": getattr(args, "limit", None),
         "stall_timeout": getattr(args, "stall_timeout", None),
+        "hitting_set_backend": getattr(args, "hittingset_backend", HittingSetBackend.AUTO.value),
     }
 
 
