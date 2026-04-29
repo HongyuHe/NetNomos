@@ -3,8 +3,8 @@ data/attacks
 data/cidds_wk3_full.csv
 data/mawi_2025july19_tcp5k.csv
 data/netflix_pcap.csv
-AGENTS.md
 docs/
+rules/convert_golden_rules.py
 
 ### Data ###
 # *.csv

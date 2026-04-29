@@ -484,6 +484,7 @@ def read_pcap(path: Path, limit: int | None = None) -> pd.DataFrame:
                 "tcp.ack": None,
                 "tcp.urgent_pointer": None,
                 "tcp.window_size_value": None,
+                "tcp.window_size_scalefactor": 1,
                 "tcp.window_size": None,
                 "tcp.options.timestamp.tsval": None,
                 "tcp.options.timestamp.tsecr": None,
@@ -522,6 +523,10 @@ def read_pcap(path: Path, limit: int | None = None) -> pd.DataFrame:
                 row["tcp.window_size"] = int(tcp.window)
                 row["_ws.col.protocol"] = "TCP"
                 for option_name, option_value in tcp.options or []:
+                    if option_name == "WScale":
+                        scale = int(option_value)
+                        row["tcp.window_size_scalefactor"] = scale if scale > 0 else 1
+                        continue
                     if option_name != "Timestamp":
                         continue
                     if isinstance(option_value, tuple) and len(option_value) == 2:

@@ -8,6 +8,7 @@ from pathlib import Path
 import pandas as pd
 
 from netnomos.api import NetNomosMiner
+from netnomos.ast import Compare, Constant, FuncCall, SymbolRef
 from netnomos.dsl import parse_formula
 from netnomos.learners import LearnedRule
 from netnomos.specs import (
@@ -170,6 +171,35 @@ class EndToEndMiningTest(unittest.TestCase):
             self.assertTrue(miner.entails_with_rules("Packets * 65535 <= Bytes", rules, input_path=data_path))
             self.assertTrue(miner.entails_with_rules("Bytes + Header <= MTU", rules, input_path=data_path))
 
+    def test_validate_mod_rules(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            data_path = Path(tmpdir) / "toy.csv"
+            pd.DataFrame([
+                {"TcpHdrLen": 20},
+                {"TcpHdrLen": 24},
+            ]).to_csv(data_path, index=False)
+
+            dataset = DatasetSpec(
+                name="toy",
+                source=SourceSpec(type=SourceType.CSV, path=str(data_path)),
+                fields=[
+                    FieldSpec(name="TcpHdrLen", value_type=ValueType.INTEGER),
+                ],
+            )
+            miner = NetNomosMiner(dataset, GrammarSpec(name="toy"), runs_dir=Path(tmpdir) / "runs")
+            rules = [
+                LearnedRule(
+                    rule_id="r0",
+                    formula=Compare("=", FuncCall("mod", (SymbolRef("TcpHdrLen"), Constant(4))), Constant(0)),
+                    display="MOD(TcpHdrLen, 4) = 0",
+                    support=1.0,
+                    source={},
+                ),
+            ]
+
+            validation = miner.validate_rules(rules, input_path=data_path)
+            self.assertTrue(validation["all_rows_satisfied"])
+
     def test_manifest_separates_configured_and_auto_exclusions(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             data_path = Path(tmpdir) / "toy.csv"
@@ -218,6 +248,26 @@ class EndToEndMiningTest(unittest.TestCase):
             self.assertEqual(manifest["configured_exclude_fields"], ["drop_by_spec"])
             self.assertEqual(manifest["excluded_fields"], ["drop_by_spec", "drop_incomplete"])
             self.assertIn("drop_incomplete", manifest["auto_excluded_fields"])
+
+    def test_golden_rule_artifacts_exist(self) -> None:
+        expected_counts = {
+            "golden_cidds": 111,
+            "golden_mawi": 942,
+            "golden_metadc": 21,
+            "golden_netflix": 111,
+            "golden_netflix_full": 1006,
+        }
+        for name, count in expected_counts.items():
+            rules_path = Path("rules") / name / "rules.json"
+            interpreted_path = Path("rules") / name / "interpreted_rules.clj"
+            metadata_path = Path("rules") / name / "metadata.json"
+            self.assertTrue(rules_path.exists(), rules_path)
+            self.assertTrue(interpreted_path.exists(), interpreted_path)
+            self.assertTrue(metadata_path.exists(), metadata_path)
+            rules = json.loads(rules_path.read_text())
+            self.assertEqual(len(rules), count)
+            interpreted = [line for line in interpreted_path.read_text().splitlines() if line.strip()]
+            self.assertEqual(len(interpreted), count)
 
 
 if __name__ == "__main__":

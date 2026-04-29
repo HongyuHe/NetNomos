@@ -1,0 +1,599 @@
+[
+  {
+    "rule_id": "golden_metadc_00001",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "IngressBytesAgg"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "IngressBytesAgg >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 1,
+      "original_expression": "GreaterThan(Symbol('IngressBytesAgg'), Integer(0))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00002",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "IngressBytesAgg"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 77967358
+      }
+    },
+    "display": "IngressBytesAgg <= 77967358",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 2,
+      "original_expression": "LessThan(Symbol('IngressBytesAgg'), Integer(77967358))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00003",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "InRxmitBytesAgg"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "+",
+        "left": {
+          "kind": "symbol",
+          "name": "InCongestionBytesAgg"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "IngressBytesAgg"
+        }
+      }
+    },
+    "display": "InRxmitBytesAgg <= (InCongestionBytesAgg + IngressBytesAgg)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 3,
+      "original_expression": "LessThan(Symbol('InRxmitBytesAgg'), Add(Symbol('InCongestionBytesAgg'), Symbol('IngressBytesAgg')))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00004",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "InCongestionBytesAgg"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "+",
+        "left": {
+          "kind": "symbol",
+          "name": "IngressBytesAgg"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "OutRxmitBytesAgg"
+        }
+      }
+    },
+    "display": "InCongestionBytesAgg <= (IngressBytesAgg + OutRxmitBytesAgg)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 4,
+      "original_expression": "LessThan(Symbol('InCongestionBytesAgg'), Add(Symbol('IngressBytesAgg'), Symbol('OutRxmitBytesAgg')))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00005",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "InCongestionBytesAgg"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 77967358
+      }
+    },
+    "display": "InCongestionBytesAgg <= 77967358",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 5,
+      "original_expression": "LessThan(Symbol('InCongestionBytesAgg'), Integer(77967358))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00006",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "InCongestionBytesAgg"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "InCongestionBytesAgg >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 6,
+      "original_expression": "GreaterThan(Symbol('InCongestionBytesAgg'), Integer(0))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00007",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "InRxmitBytesAgg"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "+",
+        "left": {
+          "kind": "symbol",
+          "name": "IngressBytesAgg"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "OutRxmitBytesAgg"
+        }
+      }
+    },
+    "display": "InRxmitBytesAgg <= (IngressBytesAgg + OutRxmitBytesAgg)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 7,
+      "original_expression": "LessThan(Symbol('InRxmitBytesAgg'), Add(Symbol('IngressBytesAgg'), Symbol('OutRxmitBytesAgg')))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00008",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "InCongestionBytesAgg"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "+",
+        "left": {
+          "kind": "symbol",
+          "name": "EgressBytesAgg"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "IngressBytesAgg"
+        }
+      }
+    },
+    "display": "InCongestionBytesAgg <= (EgressBytesAgg + IngressBytesAgg)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 8,
+      "original_expression": "LessThan(Symbol('InCongestionBytesAgg'), Add(Symbol('EgressBytesAgg'), Symbol('IngressBytesAgg')))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00009",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "InRxmitBytesAgg"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "InRxmitBytesAgg >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 9,
+      "original_expression": "GreaterThan(Symbol('InRxmitBytesAgg'), Integer(0))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00010",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "OutRxmitBytesAgg"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "+",
+        "left": {
+          "kind": "symbol",
+          "name": "EgressBytesAgg"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "InCongestionBytesAgg"
+        }
+      }
+    },
+    "display": "OutRxmitBytesAgg <= (EgressBytesAgg + InCongestionBytesAgg)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 10,
+      "original_expression": "LessThan(Symbol('OutRxmitBytesAgg'), Add(Symbol('EgressBytesAgg'), Symbol('InCongestionBytesAgg')))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00011",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "InRxmitBytesAgg"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 16311209
+      }
+    },
+    "display": "InRxmitBytesAgg <= 16311209",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 11,
+      "original_expression": "LessThan(Symbol('InRxmitBytesAgg'), Integer(16311209))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00012",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "InRxmitBytesAgg"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "+",
+        "left": {
+          "kind": "symbol",
+          "name": "EgressBytesAgg"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "IngressBytesAgg"
+        }
+      }
+    },
+    "display": "InRxmitBytesAgg <= (EgressBytesAgg + IngressBytesAgg)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 12,
+      "original_expression": "LessThan(Symbol('InRxmitBytesAgg'), Add(Symbol('EgressBytesAgg'), Symbol('IngressBytesAgg')))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00013",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "OutRxmitBytesAgg"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "OutRxmitBytesAgg >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 13,
+      "original_expression": "GreaterThan(Symbol('OutRxmitBytesAgg'), Integer(0))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00014",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "EgressBytesAgg"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "EgressBytesAgg >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 14,
+      "original_expression": "GreaterThan(Symbol('EgressBytesAgg'), Integer(0))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00015",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "OutRxmitBytesAgg"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "+",
+        "left": {
+          "kind": "symbol",
+          "name": "EgressBytesAgg"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "InRxmitBytesAgg"
+        }
+      }
+    },
+    "display": "OutRxmitBytesAgg <= (EgressBytesAgg + InRxmitBytesAgg)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 15,
+      "original_expression": "LessThan(Symbol('OutRxmitBytesAgg'), Add(Symbol('EgressBytesAgg'), Symbol('InRxmitBytesAgg')))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00016",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "InCongestionBytesAgg"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "+",
+        "left": {
+          "kind": "symbol",
+          "name": "InRxmitBytesAgg"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "IngressBytesAgg"
+        }
+      }
+    },
+    "display": "InCongestionBytesAgg <= (InRxmitBytesAgg + IngressBytesAgg)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 16,
+      "original_expression": "LessThan(Symbol('InCongestionBytesAgg'), Add(Symbol('InRxmitBytesAgg'), Symbol('IngressBytesAgg')))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00017",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "OutRxmitBytesAgg"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "+",
+        "left": {
+          "kind": "symbol",
+          "name": "EgressBytesAgg"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "IngressBytesAgg"
+        }
+      }
+    },
+    "display": "OutRxmitBytesAgg <= (EgressBytesAgg + IngressBytesAgg)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 17,
+      "original_expression": "LessThan(Symbol('OutRxmitBytesAgg'), Add(Symbol('EgressBytesAgg'), Symbol('IngressBytesAgg')))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00018",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "OutRxmitBytesAgg"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 18519203
+      }
+    },
+    "display": "OutRxmitBytesAgg <= 18519203",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 18,
+      "original_expression": "LessThan(Symbol('OutRxmitBytesAgg'), Integer(18519203))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00019",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "EgressBytesAgg"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 144238585
+      }
+    },
+    "display": "EgressBytesAgg <= 144238585",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 19,
+      "original_expression": "LessThan(Symbol('EgressBytesAgg'), Integer(144238585))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00020",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "ConnectionsAgg"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "ConnectionsAgg >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 20,
+      "original_expression": "GreaterThan(Symbol('ConnectionsAgg'), Integer(0))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_metadc_00021",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "ConnectionsAgg"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 26796
+      }
+    },
+    "display": "ConnectionsAgg <= 26796",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_metadc.pl",
+      "original_line": 21,
+      "original_expression": "LessThan(Symbol('ConnectionsAgg'), Integer(26796))",
+      "field_mode": "generic",
+      "label_mode": "none"
+    }
+  }
+]

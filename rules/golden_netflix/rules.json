@@ -1,0 +1,4769 @@
+[
+  {
+    "rule_id": "golden_netflix_00001",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.src_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": ">",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx0"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": ">",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "<=",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.options.timestamp.tsecr_ctx1"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "tcp.options.timestamp.tsval_ctx0"
+        }
+      }
+    },
+    "display": "((ip.dst_ctx1 = ip.src_ctx0) AND (ip.src_ctx1 = ip.dst_ctx0) AND (tcp.len_ctx0 > 0) AND (tcp.len_ctx1 > 0)) -> (tcp.options.timestamp.tsecr_ctx1 <= tcp.options.timestamp.tsval_ctx0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 1,
+      "original_expression": "Implies(And(Equality(Symbol('IpDst_2'), Symbol('IpSrc_1')), Equality(Symbol('IpSrc_2'), Symbol('IpDst_1')), StrictGreaterThan(Symbol('TcpLen_1'), Integer(0)), StrictGreaterThan(Symbol('TcpLen_2'), Integer(0))), LessThan(Symbol('Tsecr_2'), Symbol('Tsval_1')))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00002",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            }
+          },
+          {
+            "kind": "not",
+            "value": {
+              "kind": "or",
+              "values": [
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx0"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx0"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 2
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx0"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 17
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx0"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 18
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "not",
+            "value": {
+              "kind": "or",
+              "values": [
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx1"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx1"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 2
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx1"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 17
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx1"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 18
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": ">=",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.seq_ctx1"
+        },
+        "right": {
+          "kind": "binary",
+          "op": "+",
+          "left": {
+            "kind": "symbol",
+            "name": "tcp.len_ctx0"
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "tcp.seq_ctx0"
+          }
+        }
+      }
+    },
+    "display": "((ip.dst_ctx0 = ip.dst_ctx1) AND (ip.src_ctx0 = ip.src_ctx1) AND (NOT ((tcp.flags_ctx0 = 1) OR (tcp.flags_ctx0 = 2) OR (tcp.flags_ctx0 = 17) OR (tcp.flags_ctx0 = 18))) AND (NOT ((tcp.flags_ctx1 = 1) OR (tcp.flags_ctx1 = 2) OR (tcp.flags_ctx1 = 17) OR (tcp.flags_ctx1 = 18)))) -> (tcp.seq_ctx1 >= (tcp.len_ctx0 + tcp.seq_ctx0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 2,
+      "original_expression": "Implies(And(Equality(Symbol('IpDst_1'), Symbol('IpDst_2')), Equality(Symbol('IpSrc_1'), Symbol('IpSrc_2')), Not(Or(Equality(Symbol('TcpFlags_1'), Integer(1)), Equality(Symbol('TcpFlags_1'), Integer(2)), Equality(Symbol('TcpFlags_1'), Integer(17)), Equality(Symbol('TcpFlags_1'), Integer(18)))), Not(Or(Equality(Symbol('TcpFlags_2'), Integer(1)), Equality(Symbol('TcpFlags_2'), Integer(2)), Equality(Symbol('TcpFlags_2'), Integer(17)), Equality(Symbol('TcpFlags_2'), Integer(18))))), GreaterThan(Symbol('TcpSeq_2'), Add(Symbol('TcpLen_1'), Symbol('TcpSeq_1'))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00003",
+    "formula": {
+      "kind": "compare",
+      "op": "=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.len_ctx0"
+      },
+      "right": {
+        "kind": "binary",
+        "op": "+",
+        "left": {
+          "kind": "binary",
+          "op": "+",
+          "left": {
+            "kind": "symbol",
+            "name": "ip.hdr_len_ctx0"
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "tcp.hdr_len_ctx0"
+          }
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "tcp.len_ctx0"
+        }
+      }
+    },
+    "display": "ip.len_ctx0 = ((ip.hdr_len_ctx0 + tcp.hdr_len_ctx0) + tcp.len_ctx0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 3,
+      "original_expression": "Equality(Symbol('IpLen_1'), Add(Symbol('IpHdrLen_1'), Symbol('TcpHdrLen_1'), Symbol('TcpLen_1')))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00004",
+    "formula": {
+      "kind": "and",
+      "values": [
+        {
+          "kind": "compare",
+          "op": "<=",
+          "left": {
+            "kind": "symbol",
+            "name": "ip.ttl_ctx0"
+          },
+          "right": {
+            "kind": "constant",
+            "value": 255
+          }
+        },
+        {
+          "kind": "compare",
+          "op": ">",
+          "left": {
+            "kind": "symbol",
+            "name": "ip.ttl_ctx0"
+          },
+          "right": {
+            "kind": "constant",
+            "value": 0
+          }
+        }
+      ]
+    },
+    "display": "(ip.ttl_ctx0 <= 255) AND (ip.ttl_ctx0 > 0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 4,
+      "original_expression": "And(LessThan(Symbol('IpTtl_1'), Integer(255)), StrictGreaterThan(Symbol('IpTtl_1'), Integer(0)))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00005",
+    "formula": {
+      "kind": "compare",
+      "op": "=",
+      "left": {
+        "kind": "call",
+        "name": "mod",
+        "args": [
+          {
+            "kind": "symbol",
+            "name": "tcp.hdr_len_ctx2"
+          },
+          {
+            "kind": "constant",
+            "value": 4
+          }
+        ]
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "MOD(tcp.hdr_len_ctx2, 4) = 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 5,
+      "original_expression": "Equality(Mod(Symbol('TcpHdrLen_3'), Integer(4)), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00006",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx2"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx2"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsecr_ctx2"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": ">",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": ">",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx2"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.ack_ctx2"
+        },
+        "right": {
+          "kind": "binary",
+          "op": "+",
+          "left": {
+            "kind": "symbol",
+            "name": "tcp.len_ctx1"
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "tcp.seq_ctx1"
+          }
+        }
+      }
+    },
+    "display": "((ip.src_ctx1 = ip.dst_ctx2) AND (ip.src_ctx2 = ip.dst_ctx1) AND (tcp.options.timestamp.tsecr_ctx2 = tcp.options.timestamp.tsval_ctx1) AND (tcp.len_ctx1 > 0) AND (tcp.len_ctx2 > 0)) -> (tcp.ack_ctx2 = (tcp.len_ctx1 + tcp.seq_ctx1))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 6,
+      "original_expression": "Implies(And(Equality(Symbol('IpSrc_2'), Symbol('IpDst_3')), Equality(Symbol('IpSrc_3'), Symbol('IpDst_2')), Equality(Symbol('Tsecr_3'), Symbol('Tsval_2')), StrictGreaterThan(Symbol('TcpLen_2'), Integer(0)), StrictGreaterThan(Symbol('TcpLen_3'), Integer(0))), Equality(Symbol('TcpAck_3'), Add(Symbol('TcpLen_2'), Symbol('TcpSeq_2'))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00007",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.ack_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.ack_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.ack_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.ack_ctx2"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx0"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 16
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 16
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx2"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 16
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx2"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.src_ctx2"
+            }
+          }
+        ]
+      }
+    },
+    "display": "((tcp.ack_ctx0 = tcp.ack_ctx1) AND (tcp.ack_ctx1 = tcp.ack_ctx2) AND (tcp.flags_ctx0 = 16) AND (tcp.flags_ctx1 = 16) AND (tcp.flags_ctx2 = 16)) -> ((ip.dst_ctx0 = ip.dst_ctx1) AND (ip.dst_ctx1 = ip.dst_ctx2) AND (ip.src_ctx0 = ip.src_ctx1) AND (ip.src_ctx1 = ip.src_ctx2))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 7,
+      "original_expression": "Implies(And(Equality(Symbol('TcpAck_1'), Symbol('TcpAck_2')), Equality(Symbol('TcpAck_2'), Symbol('TcpAck_3')), Equality(Symbol('TcpFlags_1'), Integer(16)), Equality(Symbol('TcpFlags_2'), Integer(16)), Equality(Symbol('TcpFlags_3'), Integer(16))), And(Equality(Symbol('IpDst_1'), Symbol('IpDst_2')), Equality(Symbol('IpDst_2'), Symbol('IpDst_3')), Equality(Symbol('IpSrc_1'), Symbol('IpSrc_2')), Equality(Symbol('IpSrc_2'), Symbol('IpSrc_3'))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00008",
+    "formula": {
+      "kind": "compare",
+      "op": "=",
+      "left": {
+        "kind": "call",
+        "name": "mod",
+        "args": [
+          {
+            "kind": "symbol",
+            "name": "tcp.hdr_len_ctx1"
+          },
+          {
+            "kind": "constant",
+            "value": 4
+          }
+        ]
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "MOD(tcp.hdr_len_ctx1, 4) = 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 8,
+      "original_expression": "Equality(Mod(Symbol('TcpHdrLen_2'), Integer(4)), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00009",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx2"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx2"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsecr_ctx2"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": ">",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": ">",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx2"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.ack_ctx2"
+        },
+        "right": {
+          "kind": "binary",
+          "op": "+",
+          "left": {
+            "kind": "symbol",
+            "name": "tcp.len_ctx1"
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "tcp.seq_ctx1"
+          }
+        }
+      }
+    },
+    "display": "((ip.src_ctx1 = ip.dst_ctx2) AND (ip.src_ctx2 = ip.dst_ctx1) AND (tcp.options.timestamp.tsecr_ctx2 = tcp.options.timestamp.tsval_ctx1) AND (tcp.len_ctx1 > 0) AND (tcp.len_ctx2 > 0)) -> (tcp.ack_ctx2 = (tcp.len_ctx1 + tcp.seq_ctx1))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 9,
+      "original_expression": "Implies(And(Equality(Symbol('IpSrc_2'), Symbol('IpDst_3')), Equality(Symbol('IpSrc_3'), Symbol('IpDst_2')), Equality(Symbol('Tsecr_3'), Symbol('Tsval_2')), StrictGreaterThan(Symbol('TcpLen_2'), Integer(0)), StrictGreaterThan(Symbol('TcpLen_3'), Integer(0))), Equality(Symbol('TcpAck_3'), Add(Symbol('TcpLen_2'), Symbol('TcpSeq_2'))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00010",
+    "formula": {
+      "kind": "and",
+      "values": [
+        {
+          "kind": "compare",
+          "op": "<=",
+          "left": {
+            "kind": "symbol",
+            "name": "ip.ttl_ctx2"
+          },
+          "right": {
+            "kind": "constant",
+            "value": 255
+          }
+        },
+        {
+          "kind": "compare",
+          "op": ">",
+          "left": {
+            "kind": "symbol",
+            "name": "ip.ttl_ctx2"
+          },
+          "right": {
+            "kind": "constant",
+            "value": 0
+          }
+        }
+      ]
+    },
+    "display": "(ip.ttl_ctx2 <= 255) AND (ip.ttl_ctx2 > 0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 10,
+      "original_expression": "And(LessThan(Symbol('IpTtl_3'), Integer(255)), StrictGreaterThan(Symbol('IpTtl_3'), Integer(0)))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00011",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx2"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.src_ctx2"
+            }
+          },
+          {
+            "kind": "not",
+            "value": {
+              "kind": "or",
+              "values": [
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx1"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx1"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 2
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx1"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 17
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx1"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 18
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "not",
+            "value": {
+              "kind": "or",
+              "values": [
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx2"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx2"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 2
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx2"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 17
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx2"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 18
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": ">=",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.seq_ctx2"
+        },
+        "right": {
+          "kind": "binary",
+          "op": "+",
+          "left": {
+            "kind": "symbol",
+            "name": "tcp.len_ctx1"
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "tcp.seq_ctx1"
+          }
+        }
+      }
+    },
+    "display": "((ip.dst_ctx1 = ip.dst_ctx2) AND (ip.src_ctx1 = ip.src_ctx2) AND (NOT ((tcp.flags_ctx1 = 1) OR (tcp.flags_ctx1 = 2) OR (tcp.flags_ctx1 = 17) OR (tcp.flags_ctx1 = 18))) AND (NOT ((tcp.flags_ctx2 = 1) OR (tcp.flags_ctx2 = 2) OR (tcp.flags_ctx2 = 17) OR (tcp.flags_ctx2 = 18)))) -> (tcp.seq_ctx2 >= (tcp.len_ctx1 + tcp.seq_ctx1))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 11,
+      "original_expression": "Implies(And(Equality(Symbol('IpDst_2'), Symbol('IpDst_3')), Equality(Symbol('IpSrc_2'), Symbol('IpSrc_3')), Not(Or(Equality(Symbol('TcpFlags_2'), Integer(1)), Equality(Symbol('TcpFlags_2'), Integer(2)), Equality(Symbol('TcpFlags_2'), Integer(17)), Equality(Symbol('TcpFlags_2'), Integer(18)))), Not(Or(Equality(Symbol('TcpFlags_3'), Integer(1)), Equality(Symbol('TcpFlags_3'), Integer(2)), Equality(Symbol('TcpFlags_3'), Integer(17)), Equality(Symbol('TcpFlags_3'), Integer(18))))), GreaterThan(Symbol('TcpSeq_3'), Add(Symbol('TcpLen_2'), Symbol('TcpSeq_2'))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00012",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx2"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.src_ctx2"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx2"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx2"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.seq_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.seq_ctx2"
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "ip.dst_ctx1"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "ip.dst_ctx2"
+        }
+      }
+    },
+    "display": "((ip.dst_ctx1 = ip.dst_ctx2) AND (ip.src_ctx1 = ip.src_ctx2) AND (tcp.flags_ctx1 = tcp.flags_ctx2) AND (tcp.len_ctx1 = tcp.len_ctx2) AND (tcp.seq_ctx1 = tcp.seq_ctx2)) -> (ip.dst_ctx1 = ip.dst_ctx2)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 12,
+      "original_expression": "Implies(And(Equality(Symbol('IpDst_2'), Symbol('IpDst_3')), Equality(Symbol('IpSrc_2'), Symbol('IpSrc_3')), Equality(Symbol('TcpFlags_2'), Symbol('TcpFlags_3')), Equality(Symbol('TcpLen_2'), Symbol('TcpLen_3')), Equality(Symbol('TcpSeq_2'), Symbol('TcpSeq_3'))), Equality(Symbol('IpDst_2'), Symbol('IpDst_3')))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00013",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsecr_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": ">",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx0"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": ">",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.ack_ctx1"
+        },
+        "right": {
+          "kind": "binary",
+          "op": "+",
+          "left": {
+            "kind": "symbol",
+            "name": "tcp.len_ctx0"
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "tcp.seq_ctx0"
+          }
+        }
+      }
+    },
+    "display": "((ip.src_ctx0 = ip.dst_ctx1) AND (ip.src_ctx1 = ip.dst_ctx0) AND (tcp.options.timestamp.tsecr_ctx1 = tcp.options.timestamp.tsval_ctx0) AND (tcp.len_ctx0 > 0) AND (tcp.len_ctx1 > 0)) -> (tcp.ack_ctx1 = (tcp.len_ctx0 + tcp.seq_ctx0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 13,
+      "original_expression": "Implies(And(Equality(Symbol('IpSrc_1'), Symbol('IpDst_2')), Equality(Symbol('IpSrc_2'), Symbol('IpDst_1')), Equality(Symbol('Tsecr_2'), Symbol('Tsval_1')), StrictGreaterThan(Symbol('TcpLen_1'), Integer(0)), StrictGreaterThan(Symbol('TcpLen_2'), Integer(0))), Equality(Symbol('TcpAck_2'), Add(Symbol('TcpLen_1'), Symbol('TcpSeq_1'))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00014",
+    "formula": {
+      "kind": "compare",
+      "op": "=",
+      "left": {
+        "kind": "call",
+        "name": "mod",
+        "args": [
+          {
+            "kind": "symbol",
+            "name": "ip.hdr_len_ctx1"
+          },
+          {
+            "kind": "constant",
+            "value": 4
+          }
+        ]
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "MOD(ip.hdr_len_ctx1, 4) = 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 14,
+      "original_expression": "Equality(Mod(Symbol('IpHdrLen_2'), Integer(4)), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00015",
+    "formula": {
+      "kind": "compare",
+      "op": "=",
+      "left": {
+        "kind": "call",
+        "name": "mod",
+        "args": [
+          {
+            "kind": "symbol",
+            "name": "tcp.hdr_len_ctx0"
+          },
+          {
+            "kind": "constant",
+            "value": 4
+          }
+        ]
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "MOD(tcp.hdr_len_ctx0, 4) = 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 15,
+      "original_expression": "Equality(Mod(Symbol('TcpHdrLen_1'), Integer(4)), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00016",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx2"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx2"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsecr_ctx2"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx1"
+            }
+          },
+          {
+            "kind": "or",
+            "values": [
+              {
+                "kind": "compare",
+                "op": "=",
+                "left": {
+                  "kind": "symbol",
+                  "name": "tcp.flags_ctx1"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 1
+                }
+              },
+              {
+                "kind": "compare",
+                "op": "=",
+                "left": {
+                  "kind": "symbol",
+                  "name": "tcp.flags_ctx1"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 2
+                }
+              },
+              {
+                "kind": "compare",
+                "op": "=",
+                "left": {
+                  "kind": "symbol",
+                  "name": "tcp.flags_ctx1"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 17
+                }
+              },
+              {
+                "kind": "compare",
+                "op": "=",
+                "left": {
+                  "kind": "symbol",
+                  "name": "tcp.flags_ctx1"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 18
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.ack_ctx2"
+        },
+        "right": {
+          "kind": "binary",
+          "op": "+",
+          "left": {
+            "kind": "symbol",
+            "name": "tcp.seq_ctx1"
+          },
+          "right": {
+            "kind": "constant",
+            "value": 1
+          }
+        }
+      }
+    },
+    "display": "((ip.src_ctx1 = ip.dst_ctx2) AND (ip.src_ctx2 = ip.dst_ctx1) AND (tcp.len_ctx1 = 0) AND (tcp.options.timestamp.tsecr_ctx2 = tcp.options.timestamp.tsval_ctx1) AND ((tcp.flags_ctx1 = 1) OR (tcp.flags_ctx1 = 2) OR (tcp.flags_ctx1 = 17) OR (tcp.flags_ctx1 = 18))) -> (tcp.ack_ctx2 = (tcp.seq_ctx1 + 1))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 16,
+      "original_expression": "Implies(And(Equality(Symbol('IpSrc_2'), Symbol('IpDst_3')), Equality(Symbol('IpSrc_3'), Symbol('IpDst_2')), Equality(Symbol('TcpLen_2'), Integer(0)), Equality(Symbol('Tsecr_3'), Symbol('Tsval_2')), Or(Equality(Symbol('TcpFlags_2'), Integer(1)), Equality(Symbol('TcpFlags_2'), Integer(2)), Equality(Symbol('TcpFlags_2'), Integer(17)), Equality(Symbol('TcpFlags_2'), Integer(18)))), Equality(Symbol('TcpAck_3'), Add(Symbol('TcpSeq_2'), Integer(1))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00017",
+    "formula": {
+      "kind": "and",
+      "values": [
+        {
+          "kind": "compare",
+          "op": "<=",
+          "left": {
+            "kind": "symbol",
+            "name": "ip.ttl_ctx1"
+          },
+          "right": {
+            "kind": "constant",
+            "value": 255
+          }
+        },
+        {
+          "kind": "compare",
+          "op": ">",
+          "left": {
+            "kind": "symbol",
+            "name": "ip.ttl_ctx1"
+          },
+          "right": {
+            "kind": "constant",
+            "value": 0
+          }
+        }
+      ]
+    },
+    "display": "(ip.ttl_ctx1 <= 255) AND (ip.ttl_ctx1 > 0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 17,
+      "original_expression": "And(LessThan(Symbol('IpTtl_2'), Integer(255)), StrictGreaterThan(Symbol('IpTtl_2'), Integer(0)))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00018",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx0"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsecr_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx0"
+            }
+          },
+          {
+            "kind": "not",
+            "value": {
+              "kind": "or",
+              "values": [
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx0"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx0"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 2
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx0"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 17
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx0"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 18
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.ack_ctx1"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "tcp.seq_ctx0"
+        }
+      }
+    },
+    "display": "((ip.src_ctx0 = ip.dst_ctx1) AND (ip.src_ctx1 = ip.dst_ctx0) AND (tcp.len_ctx0 = 0) AND (tcp.options.timestamp.tsecr_ctx1 = tcp.options.timestamp.tsval_ctx0) AND (NOT ((tcp.flags_ctx0 = 1) OR (tcp.flags_ctx0 = 2) OR (tcp.flags_ctx0 = 17) OR (tcp.flags_ctx0 = 18)))) -> (tcp.ack_ctx1 = tcp.seq_ctx0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 18,
+      "original_expression": "Implies(And(Equality(Symbol('IpSrc_1'), Symbol('IpDst_2')), Equality(Symbol('IpSrc_2'), Symbol('IpDst_1')), Equality(Symbol('TcpLen_1'), Integer(0)), Equality(Symbol('Tsecr_2'), Symbol('Tsval_1')), Not(Or(Equality(Symbol('TcpFlags_1'), Integer(1)), Equality(Symbol('TcpFlags_1'), Integer(2)), Equality(Symbol('TcpFlags_1'), Integer(17)), Equality(Symbol('TcpFlags_1'), Integer(18))))), Equality(Symbol('TcpAck_2'), Symbol('TcpSeq_1')))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00019",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsecr_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": ">",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx0"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": ">",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.ack_ctx1"
+        },
+        "right": {
+          "kind": "binary",
+          "op": "+",
+          "left": {
+            "kind": "symbol",
+            "name": "tcp.len_ctx0"
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "tcp.seq_ctx0"
+          }
+        }
+      }
+    },
+    "display": "((ip.src_ctx0 = ip.dst_ctx1) AND (ip.src_ctx1 = ip.dst_ctx0) AND (tcp.options.timestamp.tsecr_ctx1 = tcp.options.timestamp.tsval_ctx0) AND (tcp.len_ctx0 > 0) AND (tcp.len_ctx1 > 0)) -> (tcp.ack_ctx1 = (tcp.len_ctx0 + tcp.seq_ctx0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 19,
+      "original_expression": "Implies(And(Equality(Symbol('IpSrc_1'), Symbol('IpDst_2')), Equality(Symbol('IpSrc_2'), Symbol('IpDst_1')), Equality(Symbol('Tsecr_2'), Symbol('Tsval_1')), StrictGreaterThan(Symbol('TcpLen_1'), Integer(0)), StrictGreaterThan(Symbol('TcpLen_2'), Integer(0))), Equality(Symbol('TcpAck_2'), Add(Symbol('TcpLen_1'), Symbol('TcpSeq_1'))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00020",
+    "formula": {
+      "kind": "compare",
+      "op": "=",
+      "left": {
+        "kind": "call",
+        "name": "mod",
+        "args": [
+          {
+            "kind": "symbol",
+            "name": "ip.hdr_len_ctx2"
+          },
+          {
+            "kind": "constant",
+            "value": 4
+          }
+        ]
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "MOD(ip.hdr_len_ctx2, 4) = 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 20,
+      "original_expression": "Equality(Mod(Symbol('IpHdrLen_3'), Integer(4)), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00021",
+    "formula": {
+      "kind": "compare",
+      "op": "=",
+      "left": {
+        "kind": "binary",
+        "op": "*",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.window_size_scalefactor_ctx0"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "tcp.window_size_value_ctx0"
+        }
+      },
+      "right": {
+        "kind": "symbol",
+        "name": "tcp.window_size_ctx0"
+      }
+    },
+    "display": "(tcp.window_size_scalefactor_ctx0 * tcp.window_size_value_ctx0) = tcp.window_size_ctx0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 21,
+      "original_expression": "Equality(Mul(Symbol('TcpWindowSizeScalefactor_1'), Symbol('TcpWindowSizeValue_1')), Symbol('TcpWindowSize_1'))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00022",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx2"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx2"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsecr_ctx2"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx1"
+            }
+          },
+          {
+            "kind": "not",
+            "value": {
+              "kind": "or",
+              "values": [
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx1"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 1
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx1"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 2
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx1"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 17
+                  }
+                },
+                {
+                  "kind": "compare",
+                  "op": "=",
+                  "left": {
+                    "kind": "symbol",
+                    "name": "tcp.flags_ctx1"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": 18
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.ack_ctx2"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "tcp.seq_ctx1"
+        }
+      }
+    },
+    "display": "((ip.src_ctx1 = ip.dst_ctx2) AND (ip.src_ctx2 = ip.dst_ctx1) AND (tcp.len_ctx1 = 0) AND (tcp.options.timestamp.tsecr_ctx2 = tcp.options.timestamp.tsval_ctx1) AND (NOT ((tcp.flags_ctx1 = 1) OR (tcp.flags_ctx1 = 2) OR (tcp.flags_ctx1 = 17) OR (tcp.flags_ctx1 = 18)))) -> (tcp.ack_ctx2 = tcp.seq_ctx1)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 22,
+      "original_expression": "Implies(And(Equality(Symbol('IpSrc_2'), Symbol('IpDst_3')), Equality(Symbol('IpSrc_3'), Symbol('IpDst_2')), Equality(Symbol('TcpLen_2'), Integer(0)), Equality(Symbol('Tsecr_3'), Symbol('Tsval_2')), Not(Or(Equality(Symbol('TcpFlags_2'), Integer(1)), Equality(Symbol('TcpFlags_2'), Integer(2)), Equality(Symbol('TcpFlags_2'), Integer(17)), Equality(Symbol('TcpFlags_2'), Integer(18))))), Equality(Symbol('TcpAck_3'), Symbol('TcpSeq_2')))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00023",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx0"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 2
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 18
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx2"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 16
+            }
+          },
+          {
+            "kind": "compare",
+            "op": ">",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx0"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": ">",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsecr_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsecr_ctx2"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx1"
+            }
+          }
+        ]
+      }
+    },
+    "display": "((tcp.flags_ctx0 = 2) AND (tcp.flags_ctx1 = 18) AND (tcp.flags_ctx2 = 16) AND (tcp.options.timestamp.tsval_ctx0 > 0) AND (tcp.options.timestamp.tsval_ctx1 > 0)) -> ((tcp.options.timestamp.tsecr_ctx1 = tcp.options.timestamp.tsval_ctx0) AND (tcp.options.timestamp.tsecr_ctx2 = tcp.options.timestamp.tsval_ctx1))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 23,
+      "original_expression": "Implies(And(Equality(Symbol('TcpFlags_1'), Integer(2)), Equality(Symbol('TcpFlags_2'), Integer(18)), Equality(Symbol('TcpFlags_3'), Integer(16)), StrictGreaterThan(Symbol('Tsval_1'), Integer(0)), StrictGreaterThan(Symbol('Tsval_2'), Integer(0))), And(Equality(Symbol('Tsecr_2'), Symbol('Tsval_1')), Equality(Symbol('Tsecr_3'), Symbol('Tsval_2'))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00024",
+    "formula": {
+      "kind": "compare",
+      "op": "=",
+      "left": {
+        "kind": "call",
+        "name": "mod",
+        "args": [
+          {
+            "kind": "symbol",
+            "name": "ip.hdr_len_ctx0"
+          },
+          {
+            "kind": "constant",
+            "value": 4
+          }
+        ]
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "MOD(ip.hdr_len_ctx0, 4) = 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 24,
+      "original_expression": "Equality(Mod(Symbol('IpHdrLen_1'), Integer(4)), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00025",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.src_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx0"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 24
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsecr_ctx1"
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "or",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 4
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 16
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 17
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 20
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 24
+            }
+          }
+        ]
+      }
+    },
+    "display": "((ip.dst_ctx1 = ip.src_ctx0) AND (ip.src_ctx1 = ip.dst_ctx0) AND (tcp.flags_ctx0 = 24) AND (tcp.options.timestamp.tsval_ctx0 = tcp.options.timestamp.tsecr_ctx1)) -> ((tcp.flags_ctx1 = 4) OR (tcp.flags_ctx1 = 16) OR (tcp.flags_ctx1 = 17) OR (tcp.flags_ctx1 = 20) OR (tcp.flags_ctx1 = 24))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 25,
+      "original_expression": "Implies(And(Equality(Symbol('IpDst_2'), Symbol('IpSrc_1')), Equality(Symbol('IpSrc_2'), Symbol('IpDst_1')), Equality(Symbol('TcpFlags_1'), Integer(24)), Equality(Symbol('Tsval_1'), Symbol('Tsecr_2'))), Or(Equality(Symbol('TcpFlags_2'), Integer(4)), Equality(Symbol('TcpFlags_2'), Integer(16)), Equality(Symbol('TcpFlags_2'), Integer(17)), Equality(Symbol('TcpFlags_2'), Integer(20)), Equality(Symbol('TcpFlags_2'), Integer(24))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00026",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.dstport_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.srcport_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.srcport_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.dstport_ctx1"
+            }
+          }
+        ]
+      }
+    },
+    "display": "((ip.dst_ctx0 = ip.src_ctx1) AND (ip.src_ctx0 = ip.dst_ctx1)) -> ((tcp.dstport_ctx0 = tcp.srcport_ctx1) AND (tcp.srcport_ctx0 = tcp.dstport_ctx1))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 26,
+      "original_expression": "Implies(And(Equality(Symbol('IpDst_1'), Symbol('IpSrc_2')), Equality(Symbol('IpSrc_1'), Symbol('IpDst_2'))), And(Equality(Symbol('TcpDstport_1'), Symbol('TcpSrcport_2')), Equality(Symbol('TcpSrcport_1'), Symbol('TcpDstport_2'))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00027",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.seq_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.seq_ctx1"
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            }
+          }
+        ]
+      }
+    },
+    "display": "((ip.dst_ctx0 = ip.dst_ctx1) AND (ip.src_ctx0 = ip.src_ctx1) AND (tcp.flags_ctx0 = tcp.flags_ctx1) AND (tcp.len_ctx0 = tcp.len_ctx1) AND (tcp.seq_ctx0 = tcp.seq_ctx1)) -> ((ip.dst_ctx0 = ip.dst_ctx1) AND (ip.src_ctx0 = ip.src_ctx1))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 27,
+      "original_expression": "Implies(And(Equality(Symbol('IpDst_1'), Symbol('IpDst_2')), Equality(Symbol('IpSrc_1'), Symbol('IpSrc_2')), Equality(Symbol('TcpFlags_1'), Symbol('TcpFlags_2')), Equality(Symbol('TcpLen_1'), Symbol('TcpLen_2')), Equality(Symbol('TcpSeq_1'), Symbol('TcpSeq_2'))), And(Equality(Symbol('IpDst_1'), Symbol('IpDst_2')), Equality(Symbol('IpSrc_1'), Symbol('IpSrc_2'))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00028",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx0"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsecr_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx0"
+            }
+          },
+          {
+            "kind": "or",
+            "values": [
+              {
+                "kind": "compare",
+                "op": "=",
+                "left": {
+                  "kind": "symbol",
+                  "name": "tcp.flags_ctx0"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 1
+                }
+              },
+              {
+                "kind": "compare",
+                "op": "=",
+                "left": {
+                  "kind": "symbol",
+                  "name": "tcp.flags_ctx0"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 2
+                }
+              },
+              {
+                "kind": "compare",
+                "op": "=",
+                "left": {
+                  "kind": "symbol",
+                  "name": "tcp.flags_ctx0"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 17
+                }
+              },
+              {
+                "kind": "compare",
+                "op": "=",
+                "left": {
+                  "kind": "symbol",
+                  "name": "tcp.flags_ctx0"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": 18
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.ack_ctx1"
+        },
+        "right": {
+          "kind": "binary",
+          "op": "+",
+          "left": {
+            "kind": "symbol",
+            "name": "tcp.seq_ctx0"
+          },
+          "right": {
+            "kind": "constant",
+            "value": 1
+          }
+        }
+      }
+    },
+    "display": "((ip.src_ctx0 = ip.dst_ctx1) AND (ip.src_ctx1 = ip.dst_ctx0) AND (tcp.len_ctx0 = 0) AND (tcp.options.timestamp.tsecr_ctx1 = tcp.options.timestamp.tsval_ctx0) AND ((tcp.flags_ctx0 = 1) OR (tcp.flags_ctx0 = 2) OR (tcp.flags_ctx0 = 17) OR (tcp.flags_ctx0 = 18))) -> (tcp.ack_ctx1 = (tcp.seq_ctx0 + 1))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 28,
+      "original_expression": "Implies(And(Equality(Symbol('IpSrc_1'), Symbol('IpDst_2')), Equality(Symbol('IpSrc_2'), Symbol('IpDst_1')), Equality(Symbol('TcpLen_1'), Integer(0)), Equality(Symbol('Tsecr_2'), Symbol('Tsval_1')), Or(Equality(Symbol('TcpFlags_1'), Integer(1)), Equality(Symbol('TcpFlags_1'), Integer(2)), Equality(Symbol('TcpFlags_1'), Integer(17)), Equality(Symbol('TcpFlags_1'), Integer(18)))), Equality(Symbol('TcpAck_2'), Add(Symbol('TcpSeq_1'), Integer(1))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00029",
+    "formula": {
+      "kind": "compare",
+      "op": "=",
+      "left": {
+        "kind": "binary",
+        "op": "*",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.window_size_scalefactor_ctx2"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "tcp.window_size_value_ctx2"
+        }
+      },
+      "right": {
+        "kind": "symbol",
+        "name": "tcp.window_size_ctx2"
+      }
+    },
+    "display": "(tcp.window_size_scalefactor_ctx2 * tcp.window_size_value_ctx2) = tcp.window_size_ctx2",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 29,
+      "original_expression": "Equality(Mul(Symbol('TcpWindowSizeScalefactor_3'), Symbol('TcpWindowSizeValue_3')), Symbol('TcpWindowSize_3'))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00030",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx0"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 17
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsval_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.options.timestamp.tsecr_ctx1"
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 16
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.ack_ctx1"
+            },
+            "right": {
+              "kind": "binary",
+              "op": "+",
+              "left": {
+                "kind": "symbol",
+                "name": "tcp.seq_ctx0"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1
+              }
+            }
+          }
+        ]
+      }
+    },
+    "display": "((tcp.flags_ctx0 = 17) AND (tcp.options.timestamp.tsval_ctx0 = tcp.options.timestamp.tsecr_ctx1)) -> ((tcp.flags_ctx1 = 16) AND (tcp.ack_ctx1 = (tcp.seq_ctx0 + 1)))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 30,
+      "original_expression": "Implies(And(Equality(Symbol('TcpFlags_1'), Integer(17)), Equality(Symbol('Tsval_1'), Symbol('Tsecr_2'))), And(Equality(Symbol('TcpFlags_2'), Integer(16)), Equality(Symbol('TcpAck_2'), Add(Symbol('TcpSeq_1'), Integer(1)))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00031",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.ack_ctx0"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.seq_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 16
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.len_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.seq_ctx1"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "tcp.ack_ctx0"
+        }
+      }
+    },
+    "display": "((tcp.ack_ctx0 = tcp.seq_ctx1) AND (tcp.flags_ctx1 = 16) AND (tcp.len_ctx1 = 0)) -> (tcp.seq_ctx1 = tcp.ack_ctx0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 31,
+      "original_expression": "Implies(And(Equality(Symbol('TcpAck_1'), Symbol('TcpSeq_2')), Equality(Symbol('TcpFlags_2'), Integer(16)), Equality(Symbol('TcpLen_2'), Integer(0))), Equality(Symbol('TcpSeq_2'), Symbol('TcpAck_1')))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00032",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.src_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "ip.src_ctx1"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "ip.dst_ctx0"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx0"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 2
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx1"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 18
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.flags_ctx2"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 16
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.seq_ctx2"
+            },
+            "right": {
+              "kind": "symbol",
+              "name": "tcp.ack_ctx1"
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.ack_ctx1"
+            },
+            "right": {
+              "kind": "binary",
+              "op": "+",
+              "left": {
+                "kind": "symbol",
+                "name": "tcp.seq_ctx0"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1
+              }
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "tcp.ack_ctx2"
+            },
+            "right": {
+              "kind": "binary",
+              "op": "+",
+              "left": {
+                "kind": "symbol",
+                "name": "tcp.seq_ctx1"
+              },
+              "right": {
+                "kind": "constant",
+                "value": 1
+              }
+            }
+          }
+        ]
+      }
+    },
+    "display": "((ip.dst_ctx1 = ip.src_ctx0) AND (ip.src_ctx1 = ip.dst_ctx0) AND (tcp.flags_ctx0 = 2) AND (tcp.flags_ctx1 = 18) AND (tcp.flags_ctx2 = 16)) -> ((tcp.seq_ctx2 = tcp.ack_ctx1) AND (tcp.ack_ctx1 = (tcp.seq_ctx0 + 1)) AND (tcp.ack_ctx2 = (tcp.seq_ctx1 + 1)))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 32,
+      "original_expression": "Implies(And(Equality(Symbol('IpDst_2'), Symbol('IpSrc_1')), Equality(Symbol('IpSrc_2'), Symbol('IpDst_1')), Equality(Symbol('TcpFlags_1'), Integer(2)), Equality(Symbol('TcpFlags_2'), Integer(18)), Equality(Symbol('TcpFlags_3'), Integer(16))), And(Equality(Symbol('TcpSeq_3'), Symbol('TcpAck_2')), Equality(Symbol('TcpAck_2'), Add(Symbol('TcpSeq_1'), Integer(1))), Equality(Symbol('TcpAck_3'), Add(Symbol('TcpSeq_2'), Integer(1)))))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00033",
+    "formula": {
+      "kind": "compare",
+      "op": "=",
+      "left": {
+        "kind": "binary",
+        "op": "*",
+        "left": {
+          "kind": "symbol",
+          "name": "tcp.window_size_scalefactor_ctx1"
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "tcp.window_size_value_ctx1"
+        }
+      },
+      "right": {
+        "kind": "symbol",
+        "name": "tcp.window_size_ctx1"
+      }
+    },
+    "display": "(tcp.window_size_scalefactor_ctx1 * tcp.window_size_value_ctx1) = tcp.window_size_ctx1",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 33,
+      "original_expression": "Equality(Mul(Symbol('TcpWindowSizeScalefactor_2'), Symbol('TcpWindowSizeValue_2')), Symbol('TcpWindowSize_2'))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00034",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.len_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1500
+      }
+    },
+    "display": "ip.len_ctx0 <= 1500",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 34,
+      "original_expression": "LessThan(Symbol('IpLen_1'), Integer(1500))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00035",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.seq_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "tcp.seq_ctx0 >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 35,
+      "original_expression": "GreaterThan(Symbol('TcpSeq_1'), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00036",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_scalefactor_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 512
+      }
+    },
+    "display": "tcp.window_size_scalefactor_ctx2 <= 512",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 36,
+      "original_expression": "LessThan(Symbol('TcpWindowSizeScalefactor_3'), Integer(512))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00037",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.hdr_len_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 52
+      }
+    },
+    "display": "tcp.hdr_len_ctx1 <= 52",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 37,
+      "original_expression": "LessThan(Symbol('TcpHdrLen_2'), Integer(52))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00038",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.ack_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1
+      }
+    },
+    "display": "tcp.ack_ctx2 >= 1",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 38,
+      "original_expression": "GreaterThan(Symbol('TcpAck_3'), Integer(1))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00039",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.ack_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 25013410
+      }
+    },
+    "display": "tcp.ack_ctx0 <= 25013410",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 39,
+      "original_expression": "LessThan(Symbol('TcpAck_1'), Integer(25013410))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00040",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.ttl_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 56
+      }
+    },
+    "display": "ip.ttl_ctx1 >= 56",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 40,
+      "original_expression": "GreaterThan(Symbol('IpTtl_2'), Integer(56))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00041",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.options.timestamp.tsval_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 565270055
+      }
+    },
+    "display": "tcp.options.timestamp.tsval_ctx0 >= 565270055",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 41,
+      "original_expression": "GreaterThan(Symbol('Tsval_1'), Integer(565270055))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00042",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.ttl_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 56
+      }
+    },
+    "display": "ip.ttl_ctx2 >= 56",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 42,
+      "original_expression": "GreaterThan(Symbol('IpTtl_3'), Integer(56))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00043",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_scalefactor_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 512
+      }
+    },
+    "display": "tcp.window_size_scalefactor_ctx1 <= 512",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 43,
+      "original_expression": "LessThan(Symbol('TcpWindowSizeScalefactor_2'), Integer(512))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00044",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 66880
+      }
+    },
+    "display": "tcp.window_size_ctx2 >= 66880",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 44,
+      "original_expression": "GreaterThan(Symbol('TcpWindowSize_3'), Integer(66880))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00045",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_scalefactor_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1
+      }
+    },
+    "display": "tcp.window_size_scalefactor_ctx1 >= 1",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 45,
+      "original_expression": "GreaterThan(Symbol('TcpWindowSizeScalefactor_2'), Integer(1))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00046",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_value_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 2050
+      }
+    },
+    "display": "tcp.window_size_value_ctx0 >= 2050",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 46,
+      "original_expression": "GreaterThan(Symbol('TcpWindowSizeValue_1'), Integer(2050))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00047",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1049600
+      }
+    },
+    "display": "tcp.window_size_ctx0 <= 1049600",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 47,
+      "original_expression": "LessThan(Symbol('TcpWindowSize_1'), Integer(1049600))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00048",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.hdr_len_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 20
+      }
+    },
+    "display": "ip.hdr_len_ctx2 >= 20",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 48,
+      "original_expression": "GreaterThan(Symbol('IpHdrLen_3'), Integer(20))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00049",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.options.timestamp.tsval_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 565270162
+      }
+    },
+    "display": "tcp.options.timestamp.tsval_ctx2 >= 565270162",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 49,
+      "original_expression": "GreaterThan(Symbol('Tsval_3'), Integer(565270162))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00050",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.seq_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 25013410
+      }
+    },
+    "display": "tcp.seq_ctx2 <= 25013410",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 50,
+      "original_expression": "LessThan(Symbol('TcpSeq_3'), Integer(25013410))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00051",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_value_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 65535
+      }
+    },
+    "display": "tcp.window_size_value_ctx1 <= 65535",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 51,
+      "original_expression": "LessThan(Symbol('TcpWindowSizeValue_2'), Integer(65535))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00052",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.hdr_len_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 20
+      }
+    },
+    "display": "ip.hdr_len_ctx0 <= 20",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 52,
+      "original_expression": "LessThan(Symbol('IpHdrLen_1'), Integer(20))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00053",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_value_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 2050
+      }
+    },
+    "display": "tcp.window_size_value_ctx1 >= 2050",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 53,
+      "original_expression": "GreaterThan(Symbol('TcpWindowSizeValue_2'), Integer(2050))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00054",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.len_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1500
+      }
+    },
+    "display": "ip.len_ctx2 <= 1500",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 54,
+      "original_expression": "LessThan(Symbol('IpLen_3'), Integer(1500))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00055",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.seq_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1
+      }
+    },
+    "display": "tcp.seq_ctx2 >= 1",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 55,
+      "original_expression": "GreaterThan(Symbol('TcpSeq_3'), Integer(1))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00056",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.hdr_len_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 20
+      }
+    },
+    "display": "ip.hdr_len_ctx1 <= 20",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 56,
+      "original_expression": "LessThan(Symbol('IpHdrLen_2'), Integer(20))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00057",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.len_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "tcp.len_ctx1 >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 57,
+      "original_expression": "GreaterThan(Symbol('TcpLen_2'), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00058",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.len_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "tcp.len_ctx0 >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 58,
+      "original_expression": "GreaterThan(Symbol('TcpLen_1'), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00059",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.len_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 52
+      }
+    },
+    "display": "ip.len_ctx0 >= 52",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 59,
+      "original_expression": "GreaterThan(Symbol('IpLen_1'), Integer(52))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00060",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_value_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 2050
+      }
+    },
+    "display": "tcp.window_size_value_ctx2 >= 2050",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 60,
+      "original_expression": "GreaterThan(Symbol('TcpWindowSizeValue_3'), Integer(2050))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00061",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.ack_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 25013411
+      }
+    },
+    "display": "tcp.ack_ctx2 <= 25013411",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 61,
+      "original_expression": "LessThan(Symbol('TcpAck_3'), Integer(25013411))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00062",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.ttl_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 64
+      }
+    },
+    "display": "ip.ttl_ctx1 <= 64",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 62,
+      "original_expression": "LessThan(Symbol('IpTtl_2'), Integer(64))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00063",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.ttl_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 64
+      }
+    },
+    "display": "ip.ttl_ctx2 <= 64",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 63,
+      "original_expression": "LessThan(Symbol('IpTtl_3'), Integer(64))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00064",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.hdr_len_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 32
+      }
+    },
+    "display": "tcp.hdr_len_ctx1 >= 32",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 64,
+      "original_expression": "GreaterThan(Symbol('TcpHdrLen_2'), Integer(32))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00065",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.len_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1448
+      }
+    },
+    "display": "tcp.len_ctx0 <= 1448",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 65,
+      "original_expression": "LessThan(Symbol('TcpLen_1'), Integer(1448))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00066",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.seq_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 25013410
+      }
+    },
+    "display": "tcp.seq_ctx0 <= 25013410",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 66,
+      "original_expression": "LessThan(Symbol('TcpSeq_1'), Integer(25013410))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00067",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.ack_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1
+      }
+    },
+    "display": "tcp.ack_ctx1 >= 1",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 67,
+      "original_expression": "GreaterThan(Symbol('TcpAck_2'), Integer(1))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00068",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.ttl_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 64
+      }
+    },
+    "display": "ip.ttl_ctx0 <= 64",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 68,
+      "original_expression": "LessThan(Symbol('IpTtl_1'), Integer(64))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00069",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.hdr_len_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 20
+      }
+    },
+    "display": "ip.hdr_len_ctx0 >= 20",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 69,
+      "original_expression": "GreaterThan(Symbol('IpHdrLen_1'), Integer(20))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00070",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.ttl_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 56
+      }
+    },
+    "display": "ip.ttl_ctx0 >= 56",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 70,
+      "original_expression": "GreaterThan(Symbol('IpTtl_1'), Integer(56))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00071",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.seq_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 25013410
+      }
+    },
+    "display": "tcp.seq_ctx1 <= 25013410",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 71,
+      "original_expression": "LessThan(Symbol('TcpSeq_2'), Integer(25013410))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00072",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.options.timestamp.tsecr_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 2516246074
+      }
+    },
+    "display": "tcp.options.timestamp.tsecr_ctx0 <= 2516246074",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 72,
+      "original_expression": "LessThan(Symbol('Tsecr_1'), Integer(2516246074))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00073",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_scalefactor_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 512
+      }
+    },
+    "display": "tcp.window_size_scalefactor_ctx0 <= 512",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 73,
+      "original_expression": "LessThan(Symbol('TcpWindowSizeScalefactor_1'), Integer(512))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00074",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 65535
+      }
+    },
+    "display": "tcp.window_size_ctx0 >= 65535",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 74,
+      "original_expression": "GreaterThan(Symbol('TcpWindowSize_1'), Integer(65535))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00075",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.hdr_len_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 32
+      }
+    },
+    "display": "tcp.hdr_len_ctx0 >= 32",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 75,
+      "original_expression": "GreaterThan(Symbol('TcpHdrLen_1'), Integer(32))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00076",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.seq_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "tcp.seq_ctx1 >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 76,
+      "original_expression": "GreaterThan(Symbol('TcpSeq_2'), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00077",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.len_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1448
+      }
+    },
+    "display": "tcp.len_ctx1 <= 1448",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 77,
+      "original_expression": "LessThan(Symbol('TcpLen_2'), Integer(1448))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00078",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.options.timestamp.tsval_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 2516246074
+      }
+    },
+    "display": "tcp.options.timestamp.tsval_ctx0 <= 2516246074",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 78,
+      "original_expression": "LessThan(Symbol('Tsval_1'), Integer(2516246074))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00079",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1049600
+      }
+    },
+    "display": "tcp.window_size_ctx1 <= 1049600",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 79,
+      "original_expression": "LessThan(Symbol('TcpWindowSize_2'), Integer(1049600))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00080",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.len_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "tcp.len_ctx2 >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 80,
+      "original_expression": "GreaterThan(Symbol('TcpLen_3'), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00081",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.options.timestamp.tsval_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 2516246074
+      }
+    },
+    "display": "tcp.options.timestamp.tsval_ctx1 <= 2516246074",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 81,
+      "original_expression": "LessThan(Symbol('Tsval_2'), Integer(2516246074))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00082",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1049600
+      }
+    },
+    "display": "tcp.window_size_ctx2 <= 1049600",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 82,
+      "original_expression": "LessThan(Symbol('TcpWindowSize_3'), Integer(1049600))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00083",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.ack_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "tcp.ack_ctx0 >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 83,
+      "original_expression": "GreaterThan(Symbol('TcpAck_1'), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00084",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.hdr_len_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 52
+      }
+    },
+    "display": "tcp.hdr_len_ctx2 <= 52",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 84,
+      "original_expression": "LessThan(Symbol('TcpHdrLen_3'), Integer(52))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00085",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_value_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 65535
+      }
+    },
+    "display": "tcp.window_size_value_ctx0 <= 65535",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 85,
+      "original_expression": "LessThan(Symbol('TcpWindowSizeValue_1'), Integer(65535))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00086",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.hdr_len_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 52
+      }
+    },
+    "display": "tcp.hdr_len_ctx0 <= 52",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 86,
+      "original_expression": "LessThan(Symbol('TcpHdrLen_1'), Integer(52))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00087",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.options.timestamp.tsval_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 2516246074
+      }
+    },
+    "display": "tcp.options.timestamp.tsval_ctx2 <= 2516246074",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 87,
+      "original_expression": "LessThan(Symbol('Tsval_3'), Integer(2516246074))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00088",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.options.timestamp.tsecr_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 2516246074
+      }
+    },
+    "display": "tcp.options.timestamp.tsecr_ctx1 <= 2516246074",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 88,
+      "original_expression": "LessThan(Symbol('Tsecr_2'), Integer(2516246074))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00089",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.options.timestamp.tsecr_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 2516246074
+      }
+    },
+    "display": "tcp.options.timestamp.tsecr_ctx2 <= 2516246074",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 89,
+      "original_expression": "LessThan(Symbol('Tsecr_3'), Integer(2516246074))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00090",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.len_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1448
+      }
+    },
+    "display": "tcp.len_ctx2 <= 1448",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 90,
+      "original_expression": "LessThan(Symbol('TcpLen_3'), Integer(1448))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00091",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.hdr_len_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 20
+      }
+    },
+    "display": "ip.hdr_len_ctx1 >= 20",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 91,
+      "original_expression": "GreaterThan(Symbol('IpHdrLen_2'), Integer(20))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00092",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_scalefactor_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 32
+      }
+    },
+    "display": "tcp.window_size_scalefactor_ctx2 >= 32",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 92,
+      "original_expression": "GreaterThan(Symbol('TcpWindowSizeScalefactor_3'), Integer(32))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00093",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.hdr_len_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 20
+      }
+    },
+    "display": "ip.hdr_len_ctx2 <= 20",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 93,
+      "original_expression": "LessThan(Symbol('IpHdrLen_3'), Integer(20))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00094",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.options.timestamp.tsecr_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 565270162
+      }
+    },
+    "display": "tcp.options.timestamp.tsecr_ctx2 >= 565270162",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 94,
+      "original_expression": "GreaterThan(Symbol('Tsecr_3'), Integer(565270162))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00095",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.len_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1500
+      }
+    },
+    "display": "ip.len_ctx1 <= 1500",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 95,
+      "original_expression": "LessThan(Symbol('IpLen_2'), Integer(1500))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00096",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.options.timestamp.tsval_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 565270162
+      }
+    },
+    "display": "tcp.options.timestamp.tsval_ctx1 >= 565270162",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 96,
+      "original_expression": "GreaterThan(Symbol('Tsval_2'), Integer(565270162))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00097",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.flags_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "tcp.flags_ctx2 >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 97,
+      "original_expression": "GreaterThan(Symbol('TcpFlags_3'), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00098",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_scalefactor_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1
+      }
+    },
+    "display": "tcp.window_size_scalefactor_ctx0 >= 1",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 98,
+      "original_expression": "GreaterThan(Symbol('TcpWindowSizeScalefactor_1'), Integer(1))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00099",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.flags_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 24
+      }
+    },
+    "display": "tcp.flags_ctx0 <= 24",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 99,
+      "original_expression": "LessThan(Symbol('TcpFlags_1'), Integer(24))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00100",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_value_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 5068
+      }
+    },
+    "display": "tcp.window_size_value_ctx2 <= 5068",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 100,
+      "original_expression": "LessThan(Symbol('TcpWindowSizeValue_3'), Integer(5068))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00101",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.ack_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 25013410
+      }
+    },
+    "display": "tcp.ack_ctx1 <= 25013410",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 101,
+      "original_expression": "LessThan(Symbol('TcpAck_2'), Integer(25013410))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00102",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.options.timestamp.tsecr_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 565270055
+      }
+    },
+    "display": "tcp.options.timestamp.tsecr_ctx1 >= 565270055",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 102,
+      "original_expression": "GreaterThan(Symbol('Tsecr_2'), Integer(565270055))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00103",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.hdr_len_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 32
+      }
+    },
+    "display": "tcp.hdr_len_ctx2 >= 32",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 103,
+      "original_expression": "GreaterThan(Symbol('TcpHdrLen_3'), Integer(32))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00104",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.flags_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 24
+      }
+    },
+    "display": "tcp.flags_ctx2 <= 24",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 104,
+      "original_expression": "LessThan(Symbol('TcpFlags_3'), Integer(24))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00105",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.flags_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "tcp.flags_ctx0 >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 105,
+      "original_expression": "GreaterThan(Symbol('TcpFlags_1'), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00106",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.flags_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "tcp.flags_ctx1 >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 106,
+      "original_expression": "GreaterThan(Symbol('TcpFlags_2'), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00107",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.len_ctx2"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 52
+      }
+    },
+    "display": "ip.len_ctx2 >= 52",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 107,
+      "original_expression": "GreaterThan(Symbol('IpLen_3'), Integer(52))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00108",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.flags_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 24
+      }
+    },
+    "display": "tcp.flags_ctx1 <= 24",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 108,
+      "original_expression": "LessThan(Symbol('TcpFlags_2'), Integer(24))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00109",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "ip.len_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 52
+      }
+    },
+    "display": "ip.len_ctx1 >= 52",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 109,
+      "original_expression": "GreaterThan(Symbol('IpLen_2'), Integer(52))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00110",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.window_size_ctx1"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 65535
+      }
+    },
+    "display": "tcp.window_size_ctx1 >= 65535",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 110,
+      "original_expression": "GreaterThan(Symbol('TcpWindowSize_2'), Integer(65535))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  },
+  {
+    "rule_id": "golden_netflix_00111",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "tcp.options.timestamp.tsecr_ctx0"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "tcp.options.timestamp.tsecr_ctx0 >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix.pl",
+      "original_line": 111,
+      "original_expression": "GreaterThan(Symbol('Tsecr_1'), Integer(0))",
+      "field_mode": "pcap",
+      "label_mode": "none"
+    }
+  }
+]

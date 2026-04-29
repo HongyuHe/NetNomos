@@ -1,0 +1,7 @@
+{
+  "name": "golden_netflix_full",
+  "source_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_netflix_full.pl",
+  "rule_count": 1006,
+  "field_mode": "pcap",
+  "label_mode": "none"
+}

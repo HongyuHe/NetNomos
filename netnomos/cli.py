@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
 import sys
 
 from rich import print as rich_print
@@ -106,6 +107,13 @@ def add_query_arg(parser: argparse.ArgumentParser) -> None:
     )
 
 
+def add_output_arg(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument(
+        "--output",
+        help="Write the command output to this file instead of stdout when supported.",
+    )
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="netn",
@@ -198,6 +206,7 @@ def build_parser() -> argparse.ArgumentParser:
     add_learner_arg(interpret)
     add_stall_timeout_arg(interpret)
     add_runs_dir_arg(interpret)
+    add_output_arg(interpret)
 
     entails = subparsers.add_parser(
         "entails",
@@ -233,6 +242,12 @@ def write_json(data: object) -> None:
 
 def write_rich_json(data: object) -> None:
     rich_print(JSON.from_data(data, indent=2))
+
+
+def write_text_file(path: str | Path, text: str) -> None:
+    output_path = Path(path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(text if text.endswith("\n") else f"{text}\n")
 
 
 def build_fit_kwargs(args: argparse.Namespace) -> dict[str, object]:
@@ -307,10 +322,27 @@ def main(argv: list[str] | None = None) -> int:
             rules = miner.load_rules(args.rules)
             semantic_values = miner.load_semantic_values_for_rules(args.rules)
             lines = miner.interpret_rules(rules, input_path=args.input, limit=args.limit, semantic_values=semantic_values)
-            write_stdout("\n".join(lines))
+            text = "\n".join(lines)
+            if args.output:
+                write_text_file(args.output, text)
+                write_json({
+                    "output": str(Path(args.output)),
+                    "rules": len(lines),
+                })
+                return 0
+            write_stdout(text)
             return 0
         miner.fit(**build_fit_kwargs(args))
-        write_stdout("\n".join(miner.interpret()))
+        lines = miner.interpret()
+        text = "\n".join(lines)
+        if args.output:
+            write_text_file(args.output, text)
+            write_json({
+                "output": str(Path(args.output)),
+                "rules": len(lines),
+            })
+            return 0
+        write_stdout(text)
         return 0
 
     if args.command == "entails":

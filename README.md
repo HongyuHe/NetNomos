@@ -1,4 +1,4 @@
-# NetNomos
+# NetNomos: Logic Rule Mining for Network Data 📏
 
 NetNomos is a scalable and expressive rule-mining framework for network data.
 
@@ -35,10 +35,10 @@ NetNomos supports declarative rule mining over network datasets, including:
 
 Small example datasets are provided under [`./data/`](data/), including:
 
-- [CIDDS NetFlow records](data/cidds_wk2_normal_10k.csv)
-- [Netflix PCAP trace](data/netflix.pcap)
-- [MAWI PCAP trace](data/mawi_2025july19_tcp100k.pcap)
-- preprocessed datacenter logs from [MetaDC](data/metadc_test_10racks_5ctx.csv) [[IMC '22](https://dl.acm.org/doi/10.1145/3517745.3561430)]
+- [CIDDS](https://www.hs-coburg.de/forschen/cidds-coburg-intrusion-detection-data-sets/) NetFlow records
+- [Netflix](https://dl.acm.org/doi/10.1145/3366704) PCAP trace
+- [MAWI](https://mawi.wide.ad.jp/mawi/) PCAP trace
+- preprocessed datacenter logs from Meta [[IMC '22](https://dl.acm.org/doi/10.1145/3517745.3561430)]
 
 The typical workflow is:
 
@@ -110,6 +110,9 @@ Expected repository locations:
 
 ### `netn --help`
 
+<details>
+<summary>Expand CLI help output</summary>
+
 ```text
 usage: netn [-h] [--log-level LOG_LEVEL] COMMAND ...
 
@@ -137,7 +140,12 @@ Examples:
   netn entails --dataset-spec examples/datasets/cidds.json --grammar-spec examples/grammars/network_flow.json --rules runs/<run>/rules.json --query "Packets * 65535 >= Bytes"
 ```
 
+</details>
+
 ### Subcommands
+
+<details>
+<summary>Expand subcommand reference</summary>
 
 | Command | Purpose | Typical output |
 | --- | --- | --- |
@@ -149,7 +157,12 @@ Examples:
 | `interpret` | Render rules into readable formulas. | One interpreted rule per line |
 | `entails` | Ask whether a formula satisfies learned theory. | `{"entailed": true/false}` |
 
+</details>
+
 ### Flag reference
+
+<details>
+<summary>Expand flag reference</summary>
 
 #### Global flags
 
@@ -176,16 +189,26 @@ Examples:
 | `--rules` | `validate`, `interpret`, `entails` | `None` | Uses an existing `rules.json` artifact instead of mining a fresh rule set. | `--rules runs/<run>/rules.json` |
 | `--query` | `entails` | required | Formula string to check against a theory. | `--query "Packets * 65535 >= Bytes"` |
 
+</details>
+
 ### Example commands
 
 #### Inspect specs
+
+<details>
+<summary>Expand inspect-spec commands</summary>
 
 ```bash
 uv run netn show-dataset --dataset-spec examples/datasets/pcap_tcp.json
 uv run netn show-grammar --grammar-spec examples/grammars/pcap_window.json
 ```
 
+</details>
+
 #### Prepare data
+
+<details>
+<summary>Expand prepare command</summary>
 
 ```bash
 uv run netn prepare \
@@ -194,7 +217,12 @@ uv run netn prepare \
   --limit 10
 ```
 
+</details>
+
 #### Mine rules for the shipped datasets
+
+<details>
+<summary>Expand mining recipes</summary>
 
 CIDDS flow records:
 
@@ -249,7 +277,12 @@ If the search stalls, NetNomos:
 - returns the rules found so far
 - records `search_stopped_early`, `stop_reason`, and `stall_timeout_seconds` in `fit_metadata`
 
+</details>
+
 #### Validate, interpret, and query saved artifacts
+
+<details>
+<summary>Expand artifact workflows</summary>
 
 ```bash
 uv run netn validate \
@@ -276,6 +309,8 @@ uv run netn entails \
   --query "Packets * 65535 >= Bytes"
 ```
 
+</details>
+
 ### Where outputs go
 
 Every mining run creates a directory under `runs/`:
@@ -285,6 +320,9 @@ runs/<timestamp>_<dataset-name>_<grammar-name>/
 ```
 
 Important files in each run directory:
+
+<details>
+<summary>Expand run artifact listing</summary>
 
 | File | Meaning |
 | --- | --- |
@@ -301,6 +339,8 @@ Important files in each run directory:
 | `interpreted_rules.clj` | Human-readable rule forms |
 | `semantic_values.json` | Mapping from semantic labels to raw values for reproducibility |
 
+</details>
+
 Evidence caches are stored separately under:
 
 ```text
@@ -312,6 +352,9 @@ runs/.cache/evidence/
 Dataset schema files are `DatasetSpec` JSON documents. They define how NetNomos should interpret raw input data before predicate generation.
 
 ### Top-level schema fields
+
+<details>
+<summary>Expand top-level dataset schema fields</summary>
 
 | Field | Meaning | Valid values | Effect |
 | --- | --- | --- | --- |
@@ -328,9 +371,14 @@ Dataset schema files are `DatasetSpec` JSON documents. They define how NetNomos 
 | `context_window` | Sliding-window specification. | `ContextWindowSpec` or `null` | Builds `_ctx0`, `_ctx1`, ... columns |
 | `derived_variables` | Derived columns computed after loading or windowing. | list of `DerivedVariableSpec` | Adds new fields such as interarrival statistics |
 
+</details>
+
 ### `source`
 
 `source` is a `SourceSpec` object:
+
+<details>
+<summary>Expand <code>source</code> fields</summary>
 
 | Field | Meaning | Valid values | Effect |
 | --- | --- | --- | --- |
@@ -343,9 +391,14 @@ Dataset schema files are `DatasetSpec` JSON documents. They define how NetNomos 
 - `.csv` -> CSV loader
 - `.pcap`, `.pcapng`, `.cap` -> PCAP loader
 
+</details>
+
 ### `fields`
 
 Each entry in `fields` is a `FieldSpec` object.
+
+<details>
+<summary>Expand <code>FieldSpec</code> fields</summary>
 
 | Field | Meaning | Valid values | Effect |
 | --- | --- | --- | --- |
@@ -360,9 +413,14 @@ Each entry in `fields` is a `FieldSpec` object.
 | `context_family` | Base field family for windowed columns. | string or `null` | Usually auto-filled after windowing |
 | `context_index` | Position inside the context window. | integer or `null` | Usually auto-filled after windowing |
 
+</details>
+
 #### `value_type`
 
 Use `value_type` to tell NetNomos how a field should behave:
+
+<details>
+<summary>Expand <code>value_type</code> reference</summary>
 
 | Value | Use for | Notes |
 | --- | --- | --- |
@@ -372,9 +430,14 @@ Use `value_type` to tell NetNomos how a field should behave:
 | `boolean` | true/false flags | Generates equality predicates |
 | `string` | raw text or high-cardinality identifiers | Treated symbolically |
 
+</details>
+
 #### `roles`
 
 Roles connect dataset meaning to grammar selectors.
+
+<details>
+<summary>Expand supported roles and effects</summary>
 
 Supported roles in the current schema model:
 
@@ -402,9 +465,14 @@ Example:
 - `Bytes` and `MTU` should both carry the `size` role if you want `Bytes + Header <= MTU`
 - `Duration` should carry `time`, which prevents meaningless predicates like `Bytes <= Duration`
 
+</details>
+
 #### `constants`
 
 `constants` is a list of `FieldConstantSpec` objects:
+
+<details>
+<summary>Expand constant kinds and example</summary>
 
 | `kind` | Meaning | Typical use |
 | --- | --- | --- |
@@ -430,9 +498,14 @@ Example:
 }
 ```
 
+</details>
+
 #### `enum_labels`
 
 `enum_labels` maps raw values to readable names in interpreted outputs.
+
+<details>
+<summary>Expand <code>enum_labels</code> example</summary>
 
 Example:
 
@@ -453,9 +526,14 @@ Example:
 }
 ```
 
+</details>
+
 ### Variable selection
 
 `include_fields` and `exclude_fields` operate after preprocessing.
+
+<details>
+<summary>Expand variable selection behavior</summary>
 
 - `include_fields` keeps only the listed columns
 - `exclude_fields` removes columns from the post-include set
@@ -467,9 +545,14 @@ After field selection, NetNomos automatically removes selected columns that stil
 - records incomplete-column removals in `excluded_fields.json`
 - records the same information in `manifest.json`
 
+</details>
+
 ### Preprocessing
 
 Each preprocessing step is a `PreprocessStepSpec`.
+
+<details>
+<summary>Expand preprocessing steps and fields</summary>
 
 Supported `kind` values:
 
@@ -508,9 +591,14 @@ Mapping rules support:
 - `regex`
 - `default`
 
+</details>
+
 ### Context windows
 
 `context_window` is a `ContextWindowSpec`:
+
+<details>
+<summary>Expand context window fields and example</summary>
 
 | Field | Meaning | Effect |
 | --- | --- | --- |
@@ -532,9 +620,14 @@ Example:
 }
 ```
 
+</details>
+
 ### Derived variables
 
 Each `derived_variables` entry is a `DerivedVariableSpec`.
+
+<details>
+<summary>Expand derived-variable fields and operations</summary>
 
 | Field | Meaning |
 | --- | --- |
@@ -574,11 +667,16 @@ Example from the shared PCAP schema:
 }
 ```
 
+</details>
+
 ## 5. Grammar Specification
 
 Grammar files are `GrammarSpec` JSON documents. They define the search space of predicates and quantifier projections.
 
 ### Top-level grammar fields
+
+<details>
+<summary>Expand top-level grammar fields</summary>
 
 | Field | Meaning | Effect |
 | --- | --- | --- |
@@ -589,16 +687,11 @@ Grammar files are `GrammarSpec` JSON documents. They define the search space of 
 | `predicate_templates` | Allowed predicate-generation patterns | Builds propositional candidates |
 | `quantifier_templates` | Allowed quantified window patterns | Builds projected quantifier predicates |
 
+</details>
+
 ### Operators
 
-Supported comparison operators:
-
-- `=`
-- `!=`
-- `>`
-- `>=`
-- `<`
-- `<=`
+Supported comparison operators: `=`, `!=`, `>`, `>=`, `<`, `<=`
 
 These operators are accepted both in grammar files and in formula strings passed to `entails`.
 
@@ -607,6 +700,9 @@ These operators are accepted both in grammar files and in formula strings passed
 Selectors are used in `lhs`, `rhs_field`, term templates, and quantifier templates.
 
 `VariableSelectorSpec` fields:
+
+<details>
+<summary>Expand variable selector fields</summary>
 
 | Field | Meaning | Interaction with dataset schema |
 | --- | --- | --- |
@@ -630,9 +726,14 @@ Example:
 
 This selects windowed fields that are tagged as `size`, such as `frame.len_ctx0` or `tcp.len_ctx2`.
 
+</details>
+
 ### Constant selectors
 
 `ConstantSelectorSpec` controls where constants come from.
+
+<details>
+<summary>Expand constant selector modes</summary>
 
 | Field | Meaning | Valid values |
 | --- | --- | --- |
@@ -662,9 +763,14 @@ Those labels appear in:
 - `interpreted_rules.clj`
 - `semantic_values.json`
 
+</details>
+
 ### Term templates
 
 `lhs_term` and `rhs_term` are `TermTemplateSpec` objects.
+
+<details>
+<summary>Expand term template kinds and fields</summary>
 
 Supported `kind` values:
 
@@ -686,9 +792,14 @@ Supported `kind` values:
 | `allow_same_field` | Allows `X + X` or `X op X` when meaningful |
 | `description` | Free-text metadata |
 
+</details>
+
 ### Predicate templates
 
 Each `predicate_templates` entry is a `PredicateTemplateSpec`.
+
+<details>
+<summary>Expand predicate template fields</summary>
 
 | Field | Meaning | Notes |
 | --- | --- | --- |
@@ -709,7 +820,12 @@ Valid shapes:
 - `lhs_term` + `rhs_term`
 - `lhs_term` + legacy `rhs_field` or `rhs_constant` via compatibility conversion
 
+</details>
+
 #### Variable-variable example
+
+<details>
+<summary>Expand variable-variable predicate example</summary>
 
 ```json
 {
@@ -725,7 +841,12 @@ Possible generated predicates:
 - `Bytes <= MTU`
 - `frame.len_ctx0 >= tcp.len_ctx1`
 
+</details>
+
 #### Variable-constant example
+
+<details>
+<summary>Expand variable-constant predicate example</summary>
 
 ```json
 {
@@ -746,7 +867,12 @@ Possible generated predicates:
 - `tcp.len_ctx0 = 0`
 - `tcp.len_ctx2 != 0`
 
+</details>
+
 #### `SCALAR` example
+
+<details>
+<summary>Expand <code>SCALAR</code> predicate example</summary>
 
 ```json
 {
@@ -772,7 +898,12 @@ Possible generated predicates:
 - `Packets * 65535 <= Bytes`
 - `Packets * 65535 >= Bytes`
 
+</details>
+
 #### `ADDITION` examples
+
+<details>
+<summary>Expand <code>ADDITION</code> predicate examples</summary>
 
 Field plus field:
 
@@ -824,9 +955,14 @@ Possible generated predicates:
 - `Bytes + Header <= MTU`
 - `tcp.seq_ctx0 + 1 = tcp.seq_ctx1`
 
+</details>
+
 ### Quantifier templates
 
 Each `quantifier_templates` entry is a `QuantifierTemplateSpec`.
+
+<details>
+<summary>Expand quantifier template fields and example</summary>
 
 | Field | Meaning | Notes |
 | --- | --- | --- |
@@ -865,6 +1001,8 @@ Example:
 Possible generated predicate:
 
 - `min(tcp.len_ctx0, tcp.len_ctx1, tcp.len_ctx2) >= p50`
+
+</details>
 
 ### How grammars interact with dataset schemas
 

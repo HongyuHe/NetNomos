@@ -3,6 +3,7 @@ name = "netnomos"
 version = "0.1.0"
 description = "Declarative rule mining for network datasets"
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.10"
 dependencies = [
   "numpy>=1.26.4",

@@ -1,0 +1,7141 @@
+[
+  {
+    "rule_id": "golden_cidds_00001",
+    "formula": {
+      "kind": "compare",
+      "op": "!=",
+      "left": {
+        "kind": "symbol",
+        "name": "SrcIpAddr"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1
+      }
+    },
+    "display": "SrcIpAddr != 1",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 1,
+      "original_expression": "Unequality(Symbol('SrcIpAddr'), Integer(1))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00002",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 138
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 138
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 138) -> ((DstIpAddr = 1) AND (Flags = 0) AND (Proto = 1) AND (SrcIpAddr = 0) AND (SrcPt = 138))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 2,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(138)), And(Equality(Symbol('DstIpAddr'), Integer(1)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(138))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00003",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 123
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 3
+        }
+      }
+    },
+    "display": "((DstIpAddr = 0) AND (DstPt = 123)) -> (SrcIpAddr = 3)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 3,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(123))), Equality(Symbol('SrcIpAddr'), Integer(3)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00004",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstIpAddr = 1) -> ((Flags = 0) AND (Proto = 1))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 4,
+      "original_expression": "Implies(Equality(Symbol('DstIpAddr'), Integer(1)), And(Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00005",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 53
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 4
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 53) -> ((DstIpAddr = 0) AND (DstPt = 60000) AND (SrcIpAddr = 4))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 5,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(53)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('SrcIpAddr'), Integer(4))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00006",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 4
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 2
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 3
+        }
+      }
+    },
+    "display": "((DstIpAddr = 4) AND (Proto = 2)) -> (DstPt = 3)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 6,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(4)), Equality(Symbol('Proto'), Integer(2))), Equality(Symbol('DstPt'), Integer(3)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00007",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 2
+        }
+      }
+    },
+    "display": "((DstIpAddr = 0) AND (SrcPt = 0)) -> (Proto = 2)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 7,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(0))), Equality(Symbol('Proto'), Integer(2)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00008",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "Proto"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 3
+      }
+    },
+    "display": "Proto <= 3",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 8,
+      "original_expression": "LessThan(Symbol('Proto'), Integer(3))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00009",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 445
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 445) -> ((DstIpAddr = 0) AND (DstPt = 60000) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 9,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(445)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00010",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 123
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 123
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 123) -> ((Flags = 0) AND (Proto = 1) AND (SrcPt = 123))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 10,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(123)), And(Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcPt'), Integer(123))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00011",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Flags"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      }
+    },
+    "display": "(SrcPt = 0) -> (Flags = 0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 11,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(0)), Equality(Symbol('Flags'), Integer(0)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00012",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 68
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 67
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 68) -> ((Flags = 0) AND (Proto = 1) AND (SrcIpAddr = 0) AND (SrcPt = 67))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 12,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(68)), And(Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(67))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00013",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 8080
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 8080) -> ((DstIpAddr = 0) AND (DstPt = 60000) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 3))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 13,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(8080)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(3))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00014",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 11
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 2
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 11) -> ((DstIpAddr = 0) AND (Flags = 0) AND (Proto = 2) AND (SrcIpAddr = 3) AND (SrcPt = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 14,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(11)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(2)), Equality(Symbol('SrcIpAddr'), Integer(3)), Equality(Symbol('SrcPt'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00015",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 53
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      }
+    },
+    "display": "((Flags = 0) AND (SrcPt = 53)) -> (Proto = 1)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 15,
+      "original_expression": "Implies(And(Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('SrcPt'), Integer(53))), Equality(Symbol('Proto'), Integer(1)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00016",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Flags"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      }
+    },
+    "display": "(Proto = 0) -> (Flags = 1)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 16,
+      "original_expression": "Implies(Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('Flags'), Integer(1)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00017",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 60000
+        }
+      }
+    },
+    "display": "((DstIpAddr = 3) AND (Proto = 1) AND (SrcPt = 60000)) -> (DstPt = 60000)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 17,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcPt'), Integer(60000))), Equality(Symbol('DstPt'), Integer(60000)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00018",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 4
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      }
+    },
+    "display": "((Flags = 0) AND (SrcIpAddr = 4)) -> (Proto = 1)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 18,
+      "original_expression": "Implies(And(Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(4))), Equality(Symbol('Proto'), Integer(1)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00019",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 3
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      }
+    },
+    "display": "(SrcIpAddr = 3) -> (DstIpAddr = 0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 19,
+      "original_expression": "Implies(Equality(Symbol('SrcIpAddr'), Integer(3)), Equality(Symbol('DstIpAddr'), Integer(0)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00020",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 60000
+        }
+      }
+    },
+    "display": "((DstIpAddr = 3) AND (DstPt = 60000)) -> (SrcPt = 60000)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 20,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('DstPt'), Integer(60000))), Equality(Symbol('SrcPt'), Integer(60000)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00021",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 8082
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 8082) -> ((DstIpAddr = 0) AND (DstPt = 60000) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 3))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 21,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(8082)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(3))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00022",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 8000
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 8000) -> ((DstIpAddr = 3) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 22,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(8000)), And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00023",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 25
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 25) -> ((DstIpAddr = 3) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 23,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(25)), And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00024",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "SrcPt"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 60000
+      }
+    },
+    "display": "SrcPt <= 60000",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 24,
+      "original_expression": "LessThan(Symbol('SrcPt'), Integer(60000))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00025",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 53
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      }
+    },
+    "display": "((DstPt = 53) AND (Flags = 0)) -> (Proto = 1)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 25,
+      "original_expression": "Implies(And(Equality(Symbol('DstPt'), Integer(53)), Equality(Symbol('Flags'), Integer(0))), Equality(Symbol('Proto'), Integer(1)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00026",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 123
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 123
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 123) -> ((DstPt = 123) AND (Flags = 0) AND (Proto = 1))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 26,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(123)), And(Equality(Symbol('DstPt'), Integer(123)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00027",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 80
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 80) -> ((Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 27,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(80)), And(Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00028",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "DstIpAddr"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "DstIpAddr >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 28,
+      "original_expression": "GreaterThan(Symbol('DstIpAddr'), Integer(0))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00029",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 68
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      }
+    },
+    "display": "((DstIpAddr = 0) AND (SrcPt = 68)) -> (SrcIpAddr = 0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 29,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(68))), Equality(Symbol('SrcIpAddr'), Integer(0)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00030",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 60000
+        }
+      }
+    },
+    "display": "((Proto = 0) AND (SrcIpAddr = 3)) -> (DstPt = 60000)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 30,
+      "original_expression": "Implies(And(Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(3))), Equality(Symbol('DstPt'), Integer(60000)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00031",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 4
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 53
+        }
+      }
+    },
+    "display": "((DstIpAddr = 4) AND (SrcPt = 60000)) -> (DstPt = 53)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 31,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(4)), Equality(Symbol('SrcPt'), Integer(60000))), Equality(Symbol('DstPt'), Integer(53)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00032",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "Proto"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "Proto >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 32,
+      "original_expression": "GreaterThan(Symbol('Proto'), Integer(0))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00033",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 8000
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 8000) -> ((DstIpAddr = 0) AND (DstPt = 60000) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 3))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 33,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(8000)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(3))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00034",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 4
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      }
+    },
+    "display": "(DstIpAddr = 4) -> (SrcIpAddr = 0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 34,
+      "original_expression": "Implies(Equality(Symbol('DstIpAddr'), Integer(4)), Equality(Symbol('SrcIpAddr'), Integer(0)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00035",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 8080
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 8080) -> ((DstIpAddr = 3) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 35,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(8080)), And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00036",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "Flags"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "Flags >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 36,
+      "original_expression": "GreaterThan(Symbol('Flags'), Integer(0))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00037",
+    "formula": {
+      "kind": "compare",
+      "op": "!=",
+      "left": {
+        "kind": "symbol",
+        "name": "DstIpAddr"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 2
+      }
+    },
+    "display": "DstIpAddr != 2",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 37,
+      "original_expression": "Unequality(Symbol('DstIpAddr'), Integer(2))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00038",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 123
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 3
+        }
+      }
+    },
+    "display": "((SrcIpAddr = 0) AND (SrcPt = 123)) -> (DstIpAddr = 3)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 38,
+      "original_expression": "Implies(And(Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(123))), Equality(Symbol('DstIpAddr'), Integer(3)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00039",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 138
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 138
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 138) -> ((DstIpAddr = 1) AND (DstPt = 138) AND (Flags = 0) AND (Proto = 1) AND (SrcIpAddr = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 39,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(138)), And(Equality(Symbol('DstIpAddr'), Integer(1)), Equality(Symbol('DstPt'), Integer(138)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcIpAddr'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00040",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 3
+        }
+      }
+    },
+    "display": "((DstIpAddr = 0) AND (SrcIpAddr = 0) AND (SrcPt = 0)) -> (DstPt = 3)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 40,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(0))), Equality(Symbol('DstPt'), Integer(3)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00041",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "((DstIpAddr = 1) AND (DstPt = 60000)) -> ((SrcIpAddr = 0) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 41,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(1)), Equality(Symbol('DstPt'), Integer(60000))), And(Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00042",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Flags"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      }
+    },
+    "display": "(Proto = 1) -> (Flags = 0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 42,
+      "original_expression": "Implies(Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('Flags'), Integer(0)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00043",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 123
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 3
+        }
+      }
+    },
+    "display": "((DstPt = 123) AND (SrcIpAddr = 0)) -> (DstIpAddr = 3)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 43,
+      "original_expression": "Implies(And(Equality(Symbol('DstPt'), Integer(123)), Equality(Symbol('SrcIpAddr'), Integer(0))), Equality(Symbol('DstIpAddr'), Integer(3)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00044",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "SrcIpAddr"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 4
+      }
+    },
+    "display": "SrcIpAddr <= 4",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 44,
+      "original_expression": "LessThan(Symbol('SrcIpAddr'), Integer(4))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00045",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 3
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 2
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 3) -> ((Flags = 0) AND (Proto = 2) AND (SrcPt = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 45,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(3)), And(Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(2)), Equality(Symbol('SrcPt'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00046",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "((DstIpAddr = 1) AND (SrcPt = 60000)) -> ((DstPt = 60000) AND (SrcIpAddr = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 46,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(1)), Equality(Symbol('SrcPt'), Integer(60000))), And(Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('SrcIpAddr'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00047",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 60000
+        }
+      }
+    },
+    "display": "((DstIpAddr = 3) AND (Flags = 0) AND (SrcPt = 60000)) -> (DstPt = 60000)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 47,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))), Equality(Symbol('DstPt'), Integer(60000)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00048",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 22
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 22) -> ((Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 48,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(22)), And(Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00049",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "DstIpAddr"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 4
+      }
+    },
+    "display": "DstIpAddr <= 4",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 49,
+      "original_expression": "LessThan(Symbol('DstIpAddr'), Integer(4))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00050",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Flags"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      }
+    },
+    "display": "(Flags = 1) -> (Proto = 0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 50,
+      "original_expression": "Implies(Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00051",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 137
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 137
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 137) -> ((DstIpAddr = 1) AND (Flags = 0) AND (Proto = 1) AND (SrcIpAddr = 0) AND (SrcPt = 137))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 51,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(137)), And(Equality(Symbol('DstIpAddr'), Integer(1)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(137))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00052",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "((DstIpAddr = 0) AND (DstPt = 60000) AND (SrcIpAddr = 0)) -> ((Flags = 1) AND (Proto = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 52,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('SrcIpAddr'), Integer(0))), And(Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00053",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 60000
+        }
+      }
+    },
+    "display": "((DstPt = 60000) AND (Proto = 1) AND (SrcIpAddr = 0)) -> (SrcPt = 60000)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 53,
+      "original_expression": "Implies(And(Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcIpAddr'), Integer(0))), Equality(Symbol('SrcPt'), Integer(60000)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00054",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 60000
+        }
+      }
+    },
+    "display": "((DstPt = 60000) AND (Flags = 0) AND (SrcIpAddr = 0)) -> (SrcPt = 60000)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 54,
+      "original_expression": "Implies(And(Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0))), Equality(Symbol('SrcPt'), Integer(60000)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00055",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 2
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 3
+        }
+      }
+    },
+    "display": "((DstIpAddr = 0) AND (Proto = 2) AND (SrcIpAddr = 0)) -> (DstPt = 3)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 55,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('Proto'), Integer(2)), Equality(Symbol('SrcIpAddr'), Integer(0))), Equality(Symbol('DstPt'), Integer(3)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00056",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 993
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 993) -> ((DstIpAddr = 0) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 56,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(993)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00057",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 0) -> ((DstIpAddr = 3) AND (Flags = 0) AND (Proto = 3) AND (SrcIpAddr = 0) AND (SrcPt = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 57,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(0)), And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(3)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00058",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 60000
+        }
+      }
+    },
+    "display": "((DstIpAddr = 3) AND (Proto = 0)) -> (SrcPt = 60000)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 58,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('Proto'), Integer(0))), Equality(Symbol('SrcPt'), Integer(60000)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00059",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 3
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      }
+    },
+    "display": "(DstIpAddr = 3) -> (SrcIpAddr = 0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 59,
+      "original_expression": "Implies(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('SrcIpAddr'), Integer(0)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00060",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 2
+        }
+      }
+    },
+    "display": "((SrcIpAddr = 3) AND (SrcPt = 0)) -> (Proto = 2)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 60,
+      "original_expression": "Implies(And(Equality(Symbol('SrcIpAddr'), Integer(3)), Equality(Symbol('SrcPt'), Integer(0))), Equality(Symbol('Proto'), Integer(2)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00061",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 4
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 2
+            }
+          }
+        ]
+      }
+    },
+    "display": "((DstIpAddr = 4) AND (SrcPt = 0)) -> ((DstPt = 3) AND (Proto = 2))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 61,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(4)), Equality(Symbol('SrcPt'), Integer(0))), And(Equality(Symbol('DstPt'), Integer(3)), Equality(Symbol('Proto'), Integer(2))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00062",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "((DstIpAddr = 0) AND (SrcIpAddr = 0) AND (SrcPt = 60000)) -> ((Flags = 1) AND (Proto = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 62,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))), And(Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00063",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "SrcPt"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "SrcPt >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 63,
+      "original_expression": "GreaterThan(Symbol('SrcPt'), Integer(0))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00064",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 3
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(Proto = 3) -> ((DstIpAddr = 3) AND (DstPt = 0) AND (Flags = 0) AND (SrcIpAddr = 0) AND (SrcPt = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 64,
+      "original_expression": "Implies(Equality(Symbol('Proto'), Integer(3)), And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('DstPt'), Integer(0)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00065",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 60000
+        }
+      }
+    },
+    "display": "((Flags = 1) AND (SrcIpAddr = 3)) -> (DstPt = 60000)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 65,
+      "original_expression": "Implies(And(Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('SrcIpAddr'), Integer(3))), Equality(Symbol('DstPt'), Integer(60000)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00066",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 67
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 68
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 67) -> ((DstPt = 68) AND (Flags = 0) AND (Proto = 1) AND (SrcIpAddr = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 66,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(67)), And(Equality(Symbol('DstPt'), Integer(68)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcIpAddr'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00067",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 2
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(Proto = 2) -> ((Flags = 0) AND (SrcPt = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 67,
+      "original_expression": "Implies(Equality(Symbol('Proto'), Integer(2)), And(Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('SrcPt'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00068",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 8
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 2
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 8) -> ((DstIpAddr = 3) AND (Flags = 0) AND (Proto = 2) AND (SrcIpAddr = 0) AND (SrcPt = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 68,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(8)), And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(2)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00069",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 993
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 993) -> ((DstIpAddr = 0) AND (DstPt = 60000) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 69,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(993)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00070",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 587
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 587) -> ((DstIpAddr = 0) AND (DstPt = 60000) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 70,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(587)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00071",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 80
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 80) -> ((DstIpAddr = 0) AND (DstPt = 60000) AND (Flags = 1) AND (Proto = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 71,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(80)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00072",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "DstPt"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 60000
+      }
+    },
+    "display": "DstPt <= 60000",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 72,
+      "original_expression": "LessThan(Symbol('DstPt'), Integer(60000))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00073",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 67
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      }
+    },
+    "display": "((DstIpAddr = 0) AND (DstPt = 67)) -> (SrcIpAddr = 0)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 73,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(67))), Equality(Symbol('SrcIpAddr'), Integer(0)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00074",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 5353
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 5353
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 5353) -> ((DstIpAddr = 3) AND (Flags = 0) AND (Proto = 1) AND (SrcIpAddr = 0) AND (SrcPt = 5353))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 74,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(5353)), And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(5353))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00075",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 67
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 68
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 67) -> ((Flags = 0) AND (Proto = 1) AND (SrcPt = 68))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 75,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(67)), And(Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcPt'), Integer(68))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00076",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 60000
+        }
+      }
+    },
+    "display": "((SrcIpAddr = 3) AND (SrcPt = 60000)) -> (DstPt = 60000)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 76,
+      "original_expression": "Implies(And(Equality(Symbol('SrcIpAddr'), Integer(3)), Equality(Symbol('SrcPt'), Integer(60000))), Equality(Symbol('DstPt'), Integer(60000)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00077",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      }
+    },
+    "display": "((DstPt = 60000) AND (Flags = 0)) -> (Proto = 1)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 77,
+      "original_expression": "Implies(And(Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Flags'), Integer(0))), Equality(Symbol('Proto'), Integer(1)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00078",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 53
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 4
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 53) -> ((DstIpAddr = 4) AND (SrcIpAddr = 0) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 78,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(53)), And(Equality(Symbol('DstIpAddr'), Integer(4)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00079",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 443
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 443) -> ((DstIpAddr = 0) AND (DstPt = 60000) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 3))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 79,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(443)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(3))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00080",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 60000
+        }
+      }
+    },
+    "display": "((DstPt = 60000) AND (Proto = 1) AND (SrcIpAddr = 3)) -> (SrcPt = 60000)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 80,
+      "original_expression": "Implies(And(Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcIpAddr'), Integer(3))), Equality(Symbol('SrcPt'), Integer(60000)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00081",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 5353
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 5353
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 5353) -> ((DstIpAddr = 3) AND (DstPt = 5353) AND (Flags = 0) AND (Proto = 1) AND (SrcIpAddr = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 81,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(5353)), And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('DstPt'), Integer(5353)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcIpAddr'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00082",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "SrcIpAddr"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "SrcIpAddr >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 82,
+      "original_expression": "GreaterThan(Symbol('SrcIpAddr'), Integer(0))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00083",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 137
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 137
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 137) -> ((DstIpAddr = 1) AND (DstPt = 137) AND (Flags = 0) AND (Proto = 1) AND (SrcIpAddr = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 83,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(137)), And(Equality(Symbol('DstIpAddr'), Integer(1)), Equality(Symbol('DstPt'), Integer(137)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcIpAddr'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00084",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 4
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 53
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "((DstIpAddr = 4) AND (Proto = 0)) -> ((DstPt = 53) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 84,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(4)), Equality(Symbol('Proto'), Integer(0))), And(Equality(Symbol('DstPt'), Integer(53)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00085",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 2
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 67
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 68
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcIpAddr = 2) -> ((DstIpAddr = 1) AND (DstPt = 67) AND (Flags = 0) AND (Proto = 1) AND (SrcPt = 68))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 85,
+      "original_expression": "Implies(Equality(Symbol('SrcIpAddr'), Integer(2)), And(Equality(Symbol('DstIpAddr'), Integer(1)), Equality(Symbol('DstPt'), Integer(67)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcPt'), Integer(68))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00086",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 445
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 445) -> ((DstIpAddr = 0) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 86,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(445)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00087",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "symbol",
+        "name": "DstPt"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 0
+      }
+    },
+    "display": "DstPt >= 0",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 87,
+      "original_expression": "GreaterThan(Symbol('DstPt'), Integer(0))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00088",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 22
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 22) -> ((DstIpAddr = 0) AND (DstPt = 60000) AND (Flags = 1) AND (Proto = 0))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 88,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(22)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00089",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "symbol",
+        "name": "Flags"
+      },
+      "right": {
+        "kind": "constant",
+        "value": 1
+      }
+    },
+    "display": "Flags <= 1",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 89,
+      "original_expression": "LessThan(Symbol('Flags'), Integer(1))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00090",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 4
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 53
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "((DstIpAddr = 4) AND (Proto = 1)) -> ((DstPt = 53) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 90,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(4)), Equality(Symbol('Proto'), Integer(1))), And(Equality(Symbol('DstPt'), Integer(53)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00091",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 4
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 53
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "((DstIpAddr = 4) AND (Flags = 1)) -> ((DstPt = 53) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 91,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(4)), Equality(Symbol('Flags'), Integer(1))), And(Equality(Symbol('DstPt'), Integer(53)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00092",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 60000
+        }
+      }
+    },
+    "display": "((DstIpAddr = 3) AND (Flags = 1)) -> (SrcPt = 60000)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 92,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('Flags'), Integer(1))), Equality(Symbol('SrcPt'), Integer(60000)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00093",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      }
+    },
+    "display": "((Flags = 0) AND (SrcPt = 60000)) -> (Proto = 1)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 93,
+      "original_expression": "Implies(And(Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))), Equality(Symbol('Proto'), Integer(1)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00094",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 68
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 67
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcPt = 68) -> ((DstPt = 67) AND (Flags = 0) AND (Proto = 1))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 94,
+      "original_expression": "Implies(Equality(Symbol('SrcPt'), Integer(68)), And(Equality(Symbol('DstPt'), Integer(67)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('Proto'), Integer(1))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00095",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 8082
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 8082) -> ((DstIpAddr = 3) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 95,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(8082)), And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00096",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 123
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 3
+        }
+      }
+    },
+    "display": "((DstIpAddr = 0) AND (SrcPt = 123)) -> (SrcIpAddr = 3)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 96,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(123))), Equality(Symbol('SrcIpAddr'), Integer(3)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00097",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          }
+        ]
+      }
+    },
+    "display": "((DstIpAddr = 0) AND (Flags = 0) AND (SrcPt = 60000)) -> ((DstPt = 60000) AND (SrcIpAddr = 3))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 97,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))), And(Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('SrcIpAddr'), Integer(3))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00098",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          }
+        ]
+      }
+    },
+    "display": "((DstIpAddr = 0) AND (Proto = 1) AND (SrcPt = 60000)) -> ((DstPt = 60000) AND (SrcIpAddr = 3))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 98,
+      "original_expression": "Implies(And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('Proto'), Integer(1)), Equality(Symbol('SrcPt'), Integer(60000))), And(Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('SrcIpAddr'), Integer(3))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00099",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcIpAddr"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 4
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 53
+            }
+          }
+        ]
+      }
+    },
+    "display": "(SrcIpAddr = 4) -> ((DstIpAddr = 0) AND (DstPt = 60000) AND (SrcPt = 53))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 99,
+      "original_expression": "Implies(Equality(Symbol('SrcIpAddr'), Integer(4)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('SrcPt'), Integer(53))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00100",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 587
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 587) -> ((DstIpAddr = 0) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 100,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(587)), And(Equality(Symbol('DstIpAddr'), Integer(0)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00101",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "DstPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 443
+        }
+      },
+      "right": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 1
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Proto"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          }
+        ]
+      }
+    },
+    "display": "(DstPt = 443) -> ((DstIpAddr = 3) AND (Flags = 1) AND (Proto = 0) AND (SrcIpAddr = 0) AND (SrcPt = 60000))",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 101,
+      "original_expression": "Implies(Equality(Symbol('DstPt'), Integer(443)), And(Equality(Symbol('DstIpAddr'), Integer(3)), Equality(Symbol('Flags'), Integer(1)), Equality(Symbol('Proto'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(0)), Equality(Symbol('SrcPt'), Integer(60000))))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00102",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "and",
+        "values": [
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "DstPt"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 60000
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "Flags"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 0
+            }
+          },
+          {
+            "kind": "compare",
+            "op": "=",
+            "left": {
+              "kind": "symbol",
+              "name": "SrcIpAddr"
+            },
+            "right": {
+              "kind": "constant",
+              "value": 3
+            }
+          }
+        ]
+      },
+      "right": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "SrcPt"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 60000
+        }
+      }
+    },
+    "display": "((DstPt = 60000) AND (Flags = 0) AND (SrcIpAddr = 3)) -> (SrcPt = 60000)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 102,
+      "original_expression": "Implies(And(Equality(Symbol('DstPt'), Integer(60000)), Equality(Symbol('Flags'), Integer(0)), Equality(Symbol('SrcIpAddr'), Integer(3))), Equality(Symbol('SrcPt'), Integer(60000)))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00103",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": "<=",
+        "left": {
+          "kind": "binary",
+          "op": "*",
+          "left": {
+            "kind": "constant",
+            "value": 42
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "Packets"
+          }
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "Bytes"
+        }
+      }
+    },
+    "display": "(Proto = 1) -> ((42 * Packets) <= Bytes)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 103,
+      "original_expression": "Implies(Equality(Symbol('Proto'), Integer(1)), LessThan(Mul(Integer(42), Symbol('Packets')), Symbol('Bytes')))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00104",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": ">=",
+        "left": {
+          "kind": "binary",
+          "op": "*",
+          "left": {
+            "kind": "constant",
+            "value": 65535
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "Packets"
+          }
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "Bytes"
+        }
+      }
+    },
+    "display": "(Proto = 1) -> ((65535 * Packets) >= Bytes)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 104,
+      "original_expression": "Implies(Equality(Symbol('Proto'), Integer(1)), GreaterThan(Mul(Integer(65535), Symbol('Packets')), Symbol('Bytes')))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00105",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 2
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": ">=",
+        "left": {
+          "kind": "binary",
+          "op": "*",
+          "left": {
+            "kind": "constant",
+            "value": 65535
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "Packets"
+          }
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "Bytes"
+        }
+      }
+    },
+    "display": "(Proto = 2) -> ((65535 * Packets) >= Bytes)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 105,
+      "original_expression": "Implies(Equality(Symbol('Proto'), Integer(2)), GreaterThan(Mul(Integer(65535), Symbol('Packets')), Symbol('Bytes')))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00106",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": ">=",
+        "left": {
+          "kind": "binary",
+          "op": "*",
+          "left": {
+            "kind": "constant",
+            "value": 1500
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "Packets"
+          }
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "Bytes"
+        }
+      }
+    },
+    "display": "(Proto = 1) -> ((1500 * Packets) >= Bytes)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 106,
+      "original_expression": "Implies(Equality(Symbol('Proto'), Integer(1)), GreaterThan(Mul(Integer(1500), Symbol('Packets')), Symbol('Bytes')))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00107",
+    "formula": {
+      "kind": "compare",
+      "op": ">=",
+      "left": {
+        "kind": "binary",
+        "op": "*",
+        "left": {
+          "kind": "constant",
+          "value": 65535
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "Packets"
+        }
+      },
+      "right": {
+        "kind": "symbol",
+        "name": "Bytes"
+      }
+    },
+    "display": "(65535 * Packets) >= Bytes",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 107,
+      "original_expression": "GreaterThan(Mul(Integer(65535), Symbol('Packets')), Symbol('Bytes'))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00108",
+    "formula": {
+      "kind": "compare",
+      "op": "<=",
+      "left": {
+        "kind": "binary",
+        "op": "*",
+        "left": {
+          "kind": "constant",
+          "value": 42
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "Packets"
+        }
+      },
+      "right": {
+        "kind": "symbol",
+        "name": "Bytes"
+      }
+    },
+    "display": "(42 * Packets) <= Bytes",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 108,
+      "original_expression": "LessThan(Mul(Integer(42), Symbol('Packets')), Symbol('Bytes'))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00109",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 1
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": "<=",
+        "left": {
+          "kind": "binary",
+          "op": "*",
+          "left": {
+            "kind": "constant",
+            "value": 8
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "Packets"
+          }
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "Bytes"
+        }
+      }
+    },
+    "display": "(Proto = 1) -> ((8 * Packets) <= Bytes)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 109,
+      "original_expression": "Implies(Equality(Symbol('Proto'), Integer(1)), LessThan(Mul(Integer(8), Symbol('Packets')), Symbol('Bytes')))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00110",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 2
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": "<=",
+        "left": {
+          "kind": "binary",
+          "op": "*",
+          "left": {
+            "kind": "constant",
+            "value": 64
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "Packets"
+          }
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "Bytes"
+        }
+      }
+    },
+    "display": "(Proto = 2) -> ((64 * Packets) <= Bytes)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 110,
+      "original_expression": "Implies(Equality(Symbol('Proto'), Integer(2)), LessThan(Mul(Integer(64), Symbol('Packets')), Symbol('Bytes')))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  },
+  {
+    "rule_id": "golden_cidds_00111",
+    "formula": {
+      "kind": "implies",
+      "left": {
+        "kind": "compare",
+        "op": "=",
+        "left": {
+          "kind": "symbol",
+          "name": "Proto"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0
+        }
+      },
+      "right": {
+        "kind": "compare",
+        "op": "<=",
+        "left": {
+          "kind": "binary",
+          "op": "*",
+          "left": {
+            "kind": "constant",
+            "value": 42
+          },
+          "right": {
+            "kind": "symbol",
+            "name": "Packets"
+          }
+        },
+        "right": {
+          "kind": "symbol",
+          "name": "Bytes"
+        }
+      }
+    },
+    "display": "(Proto = 0) -> ((42 * Packets) <= Bytes)",
+    "support": 0.0,
+    "source": {
+      "importer": "sympy-rule-converter",
+      "original_file": "/Users/hongyu/Projects/Formal/anuta/rules/golden_cidds.pl",
+      "original_line": 111,
+      "original_expression": "Implies(Equality(Symbol('Proto'), Integer(0)), LessThan(Mul(Integer(42), Symbol('Packets')), Symbol('Bytes')))",
+      "field_mode": "generic",
+      "label_mode": "cidds"
+    }
+  }
+]

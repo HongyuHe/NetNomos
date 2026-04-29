@@ -112,14 +112,19 @@ def evaluate_term_row(term: Term, row: dict[str, Any], context_families: dict[st
         raise ValueError(f"Unsupported term op: {term.op}")
     if isinstance(term, FuncCall):
         args = [evaluate_term_row(arg, row, context_families, env) for arg in term.args]
-        if term.name == "min":
+        name = term.name.lower()
+        if name == "min":
             return min(args)
-        if term.name == "max":
+        if name == "max":
             return max(args)
-        if term.name == "sum":
+        if name == "sum":
             return sum(args)
-        if term.name == "avg":
+        if name == "avg":
             return sum(args) / len(args)
+        if name == "mod":
+            if len(args) != 2:
+                raise ValueError("MOD requires exactly two arguments")
+            return args[0] % args[1]
         raise ValueError(f"Unsupported function: {term.name}")
     raise TypeError(f"Unsupported term node: {type(term)!r}")
 
@@ -203,18 +208,23 @@ def lower_term(term: Term, fields: dict[str, FieldSpec], context_families: dict[
         raise ValueError(f"Unsupported term op: {term.op}")
     if isinstance(term, FuncCall):
         args = [lower_term(arg, fields, context_families, env) for arg in term.args]
-        if term.name == "min":
+        name = term.name.lower()
+        if name == "min":
             return fold_if_min(args)
-        if term.name == "max":
+        if name == "max":
             return fold_if_max(args)
-        if term.name == "sum":
+        if name == "sum":
             result = args[0]
             for arg in args[1:]:
                 result = result + arg
             return result
-        if term.name == "avg":
+        if name == "avg":
             total = lower_term(FuncCall("sum", term.args), fields, context_families, env)
             return total / z3.RealVal(len(args))
+        if name == "mod":
+            if len(args) != 2:
+                raise ValueError("MOD requires exactly two arguments")
+            return args[0] % args[1]
         raise ValueError(f"Unsupported function: {term.name}")
     raise TypeError(f"Unsupported term node: {type(term)!r}")
 
@@ -320,23 +330,32 @@ def _evaluate_term_vectorized(term: Term, prepared: PreparedDataset) -> pd.Serie
             return left / right
     if isinstance(term, FuncCall):
         columns = [_evaluate_term_vectorized(arg, prepared) for arg in term.args]
+        name = term.name.lower()
         if all(isinstance(col, pd.Series) for col in columns):
             tmp = pd.concat(columns, axis=1)
-            if term.name == "min":
+            if name == "min":
                 return tmp.min(axis=1)
-            if term.name == "max":
+            if name == "max":
                 return tmp.max(axis=1)
-            if term.name == "sum":
+            if name == "sum":
                 return tmp.sum(axis=1)
-            if term.name == "avg":
+            if name == "avg":
                 return tmp.mean(axis=1)
+            if name == "mod":
+                if len(columns) != 2:
+                    raise ValueError("MOD requires exactly two arguments")
+                return columns[0] % columns[1]
         values = [col if not isinstance(col, pd.Series) else col.iloc[0] for col in columns]
-        if term.name == "min":
+        if name == "min":
             return min(values)
-        if term.name == "max":
+        if name == "max":
             return max(values)
-        if term.name == "sum":
+        if name == "sum":
             return sum(values)
-        if term.name == "avg":
+        if name == "avg":
             return sum(values) / len(values)
+        if name == "mod":
+            if len(values) != 2:
+                raise ValueError("MOD requires exactly two arguments")
+            return values[0] % values[1]
     raise TypeError(f"Unsupported vectorized term: {type(term)!r}")
