@@ -18,6 +18,44 @@ from netnomos.specs import DatasetSpec, FieldSpec, GrammarSpec, SourceSpec, Sour
 
 
 class CliTest(unittest.TestCase):
+    def test_learn_command_runs_end_to_end(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp = Path(tmpdir)
+            data_path = tmp / "toy.csv"
+            dataset_path = tmp / "dataset.json"
+            grammar_path = tmp / "grammar.json"
+
+            pd.DataFrame([
+                {"Bytes": 10, "Packets": 1},
+                {"Bytes": 20, "Packets": 2},
+            ]).to_csv(data_path, index=False)
+
+            dataset = DatasetSpec(
+                name="toy",
+                source=SourceSpec(type=SourceType.CSV, path=str(data_path)),
+                fields=[
+                    FieldSpec(name="Bytes", value_type=ValueType.INTEGER),
+                    FieldSpec(name="Packets", value_type=ValueType.INTEGER),
+                ],
+            )
+            grammar = GrammarSpec(name="toy", max_clause_size=1, max_rules=8)
+            dataset_path.write_text(dataset.model_dump_json(indent=2))
+            grammar_path.write_text(grammar.model_dump_json(indent=2))
+
+            stdout = io.StringIO()
+            with redirect_stdout(stdout):
+                exit_code = main([
+                    "learn",
+                    "--dataset-spec", str(dataset_path),
+                    "--grammar-spec", str(grammar_path),
+                    "--hittingset-backend", "python",
+                ])
+
+            self.assertEqual(exit_code, 0)
+            payload = json.loads(stdout.getvalue())
+            self.assertIn("run_dir", payload)
+            self.assertIn("fit_metadata", payload)
+
     def test_interpret_can_write_to_file(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp = Path(tmpdir)

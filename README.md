@@ -44,7 +44,7 @@ The typical workflow is:
 
 1. Describe the dataset using a schema JSON file.
 2. Describe the allowed predicate space using a grammar JSON file.
-3. Run `netn mine ...`.
+3. Run `netn learn ...`.
 4. Inspect the generated predicates, learned rules, and semantic mappings in the run directory.
 
 ### Key Concepts
@@ -107,7 +107,7 @@ Expected repository locations:
 - dataset specs: `examples/datasets/`
 - grammar specs: `examples/grammars/`
 - sample inputs: `data/`
-- mining outputs: `runs/`
+- learning outputs: `runs/`
 
 ## 3. CLI Usage
 
@@ -119,15 +119,15 @@ Expected repository locations:
 ```text
 usage: netn [-h] [--log-level LOG_LEVEL] COMMAND ...
 
-Inspect specs, prepare datasets, mine rules, validate rule sets, interpret saved artifacts, and run entailment queries.
+Inspect specs, prepare datasets, learn rules, validate rule sets, interpret saved artifacts, and run entailment queries.
 
 positional arguments:
   COMMAND               Subcommand to run
     show-dataset        Print a dataset schema JSON file.
     show-grammar        Print a grammar JSON file.
     prepare             Load and materialize a dataset.
-    mine                Generate predicates and learn rules.
-    validate            Validate a mined or saved rule set against data.
+    learn               Generate predicates and learn rules.
+    validate            Validate a learned or saved rule set against data.
     interpret           Render rules into human-readable formulas.
     entails             Check whether a query is entailed by a rule set.
 
@@ -138,8 +138,8 @@ options:
                         stderr. (default: INFO)
 
 Examples:
-  netn mine --dataset-spec examples/datasets/cidds.json --grammar-spec examples/grammars/network_flow.json --input data/cidds_wk2_normal_10k.csv
-  netn mine --dataset-spec examples/datasets/pcap_tcp.json --grammar-spec examples/grammars/pcap_window.json --input data/netflix.pcap
+  netn learn --dataset-spec examples/datasets/cidds.json --grammar-spec examples/grammars/network_flow.json --input data/cidds_wk2_normal_10k.csv
+  netn learn --dataset-spec examples/datasets/pcap_tcp.json --grammar-spec examples/grammars/pcap_window.json --input data/netflix.pcap
   netn entails --dataset-spec examples/datasets/cidds.json --grammar-spec examples/grammars/network_flow.json --rules runs/<run>/rules.json --query "Packets * 65535 >= Bytes"
 ```
 
@@ -155,8 +155,8 @@ Examples:
 | `show-dataset` | Print a dataset schema JSON file after model validation. | Schema JSON on stdout |
 | `show-grammar` | Print a grammar JSON file after model validation. | Grammar JSON on stdout |
 | `prepare` | Load data, apply preprocessing, build context windows, and derived variables. | Prepared schema summary JSON |
-| `mine` | Generate predicates and learn rules. | Run summary JSON and saved artifacts |
-| `validate` | Validate saved or freshly mined rules against data. | Satisfaction statistics JSON |
+| `learn` | Generate predicates and learn rules. | Run summary JSON and saved artifacts |
+| `validate` | Validate saved or freshly learned rules against data. | Satisfaction statistics JSON |
 | `interpret` | Render rules into readable formulas. | One interpreted rule per line |
 | `entails` | Ask whether a formula satisfies learned theory. | `{"entailed": true/false}` |
 
@@ -171,26 +171,26 @@ Examples:
 
 | Flag | Commands | Default | Purpose | Example |
 | --- | --- | --- | --- | --- |
-| `--log-level` | all | `INFO` | Controls stderr diagnostics from dataset loading, mining, warnings, and early stopping. | `uv run netn --log-level DEBUG prepare ...` |
+| `--log-level` | all | `INFO` | Controls stderr diagnostics from dataset loading, learning, warnings, and early stopping. | `uv run netn --log-level DEBUG prepare ...` |
 
 #### Dataset and grammar selection
 
 | Flag | Commands | Default | Purpose | Example |
 | --- | --- | --- | --- | --- |
 | `--dataset-spec` | all except `show-grammar` | required | Path to a dataset schema JSON file. | `--dataset-spec examples/datasets/cidds.json` |
-| `--grammar-spec` | `show-grammar`, `mine`, `validate`, `interpret`, `entails` | required | Path to a grammar JSON file. | `--grammar-spec examples/grammars/network_flow.json` |
-| `--input` | `prepare`, `mine`, `validate`, `interpret`, `entails` | schema default | Overrides `source.path` from the dataset spec. | `--input data/netflix.pcap` |
-| `--limit` | `prepare`, `mine`, `validate`, `interpret`, `entails` | `None` | Loads only the first N raw rows or packets before preprocessing. Useful for smoke tests. | `--limit 200` |
+| `--grammar-spec` | `show-grammar`, `learn`, `validate`, `interpret`, `entails` | required | Path to a grammar JSON file. | `--grammar-spec examples/grammars/network_flow.json` |
+| `--input` | `prepare`, `learn`, `validate`, `interpret`, `entails` | schema default | Overrides `source.path` from the dataset spec. | `--input data/netflix.pcap` |
+| `--limit` | `prepare`, `learn`, `validate`, `interpret`, `entails` | `None` | Loads only the first N raw rows or packets before preprocessing. Useful for smoke tests. | `--limit 200` |
 
-#### Mining and artifact control
+#### Learning and artifact control
 
 | Flag | Commands | Default | Purpose | Example |
 | --- | --- | --- | --- | --- |
-| `--learner` | `mine`, `validate`, `interpret`, `entails` | `hitting-set` | Selects the learning backend when the command needs to mine rules. | `--learner tree` |
-| `--stall-timeout` | `mine`, `validate`, `interpret`, `entails` | `None` | Stops the hitting-set learner after this many seconds without a new rule. Partial results are returned and saved. Ignored by `tree`. | `--stall-timeout 60` |
-| `--hittingset-backend` | `mine`, `validate`, `interpret`, `entails` | `auto` | Selects the hitting-set implementation: `native` uses the C++ core, `python` keeps the original Python search, and `auto` prefers `native` when available. Ignored by `tree`. | `--hittingset-backend native` |
-| `--runs-dir` | `mine`, `validate`, `interpret`, `entails` | `runs` | Directory where mined artifacts and cache metadata are stored. | `--runs-dir tmp/runs` |
-| `--rules` | `validate`, `interpret`, `entails` | `None` | Uses an existing `rules.json` artifact instead of mining a fresh rule set. | `--rules runs/<run>/rules.json` |
+| `--learner` | `learn`, `validate`, `interpret`, `entails` | `hitting-set` | Selects the learning backend when the command needs to learn rules. | `--learner tree` |
+| `--stall-timeout` | `learn`, `validate`, `interpret`, `entails` | `None` | Stops the hitting-set learner after this many seconds without a new rule. Partial results are returned and saved. Ignored by `tree`. | `--stall-timeout 60` |
+| `--hittingset-backend` | `learn`, `validate`, `interpret`, `entails` | `auto` | Selects the hitting-set implementation: `native` uses the C++ core, `python` keeps the original Python search, and `auto` prefers `native` when available. Ignored by `tree`. | `--hittingset-backend native` |
+| `--runs-dir` | `learn`, `validate`, `interpret`, `entails` | `runs` | Directory where learned artifacts and cache metadata are stored. | `--runs-dir tmp/runs` |
+| `--rules` | `validate`, `interpret`, `entails` | `None` | Uses an existing `rules.json` artifact instead of learning a fresh rule set. | `--rules runs/<run>/rules.json` |
 | `--query` | `entails` | required | Formula string to check against a theory. | `--query "Packets * 65535 >= Bytes"` |
 
 </details>
@@ -223,15 +223,15 @@ uv run netn prepare \
 
 </details>
 
-#### Mine rules for the shipped datasets
+#### Learn rules for the shipped datasets
 
 <details>
-<summary>Expand mining recipes</summary>
+<summary>Expand learning recipes</summary>
 
 CIDDS flow records:
 
 ```bash
-uv run netn mine \
+uv run netn learn \
   --dataset-spec examples/datasets/cidds.json \
   --grammar-spec examples/grammars/network_flow.json \
   --input data/cidds_wk2_normal_10k.csv
@@ -240,7 +240,7 @@ uv run netn mine \
 Netflix PCAP:
 
 ```bash
-uv run netn mine \
+uv run netn learn \
   --dataset-spec examples/datasets/pcap_tcp.json \
   --grammar-spec examples/grammars/pcap_window.json \
   --input data/netflix.pcap
@@ -249,7 +249,7 @@ uv run netn mine \
 MAWI PCAP:
 
 ```bash
-uv run netn mine \
+uv run netn learn \
   --dataset-spec examples/datasets/pcap_tcp.json \
   --grammar-spec examples/grammars/pcap_window.json \
   --input data/mawi_2025july19_tcp100k.pcap
@@ -258,7 +258,7 @@ uv run netn mine \
 MetaDC aggregated statistics:
 
 ```bash
-uv run netn mine \
+uv run netn learn \
   --dataset-spec examples/datasets/metadc.json \
   --grammar-spec examples/grammars/metadc_agg.json \
   --input data/metadc_test_10racks_5ctx.csv
@@ -267,7 +267,7 @@ uv run netn mine \
 Example of stall-aware early stopping:
 
 ```bash
-uv run netn mine \
+uv run netn learn \
   --dataset-spec examples/datasets/cidds.json \
   --grammar-spec examples/grammars/network_flow.json \
   --input data/cidds_wk2_normal_10k.csv \
@@ -284,7 +284,7 @@ If the search stalls, NetNomos:
 Force the original Python search backend:
 
 ```bash
-uv run netn mine \
+uv run netn learn \
   --dataset-spec examples/datasets/cidds.json \
   --grammar-spec examples/grammars/network_flow.json \
   --input data/cidds_wk2_normal_10k.csv \
@@ -327,7 +327,7 @@ uv run netn entails \
 
 ### Where outputs go
 
-Every mining run creates a directory under `runs/`:
+Every learning run creates a directory under `runs/`:
 
 ```text
 runs/<timestamp>_<dataset-name>_<grammar-name>/

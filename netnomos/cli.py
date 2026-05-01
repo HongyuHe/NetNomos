@@ -19,13 +19,13 @@ class CliFormatter(argparse.ArgumentDefaultsHelpFormatter, argparse.RawDescripti
 
 
 CLI_DESCRIPTION = (
-    "Inspect specs, prepare datasets, mine rules, validate rule sets, interpret saved artifacts, "
+    "Inspect specs, prepare datasets, learn rules, validate rule sets, interpret saved artifacts, "
     "and run entailment queries."
 )
 
 CLI_EPILOG = """Examples:
-  netn mine --dataset-spec examples/datasets/cidds.json --grammar-spec examples/grammars/network_flow.json --input data/cidds_wk2_normal_10k.csv
-  netn mine --dataset-spec examples/datasets/pcap_tcp.json --grammar-spec examples/grammars/pcap_window.json --input data/netflix.pcap
+  netn learn --dataset-spec examples/datasets/cidds.json --grammar-spec examples/grammars/network_flow.json --input data/cidds_wk2_normal_10k.csv
+  netn learn --dataset-spec examples/datasets/pcap_tcp.json --grammar-spec examples/grammars/pcap_window.json --input data/netflix.pcap
   netn entails --dataset-spec examples/datasets/cidds.json --grammar-spec examples/grammars/network_flow.json --rules runs/<run>/rules.json --query "Packets * 65535 >= Bytes"
 """
 
@@ -66,7 +66,7 @@ def add_learner_arg(parser: argparse.ArgumentParser) -> None:
         "--learner",
         choices=[item.value for item in LearnerKind],
         default=LearnerKind.HITTING_SET.value,
-        help="Rule-learning backend to use when mining rules.",
+        help="Rule-learning backend to use when learning rules.",
     )
 
 
@@ -97,7 +97,7 @@ def add_runs_dir_arg(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--runs-dir",
         default="runs",
-        help="Directory where mining runs and artifacts are written.",
+        help="Directory where learning runs and artifacts are written.",
     )
 
 
@@ -105,7 +105,7 @@ def add_rules_arg(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--rules",
         help=(
-            "Path to an existing rules.json artifact. When provided, the command skips mining and "
+            "Path to an existing rules.json artifact. When provided, the command skips learning and "
             "operates on those saved rules."
         ),
     )
@@ -169,10 +169,25 @@ def build_parser() -> argparse.ArgumentParser:
     add_input_arg(prepare)
     add_limit_arg(prepare)
 
+    learn = subparsers.add_parser(
+        "learn",
+        help="Generate predicates and learn rules.",
+        description="Generate predicates and learn rules from a dataset using a grammar and a selected learner.",
+        formatter_class=CliFormatter,
+    )
+    add_dataset_spec_arg(learn)
+    add_grammar_spec_arg(learn)
+    add_input_arg(learn)
+    add_limit_arg(learn)
+    add_learner_arg(learn)
+    add_stall_timeout_arg(learn)
+    add_hittingset_backend_arg(learn)
+    add_runs_dir_arg(learn)
+
     mine = subparsers.add_parser(
         "mine",
-        help="Generate predicates and learn rules.",
-        description="Mine predicates and rules from a dataset using a grammar and a selected learner.",
+        help=argparse.SUPPRESS,
+        description="Deprecated alias for `learn`.",
         formatter_class=CliFormatter,
     )
     add_dataset_spec_arg(mine)
@@ -183,12 +198,13 @@ def build_parser() -> argparse.ArgumentParser:
     add_stall_timeout_arg(mine)
     add_hittingset_backend_arg(mine)
     add_runs_dir_arg(mine)
+    subparsers._choices_actions = [action for action in subparsers._choices_actions if action.dest != "mine"]
 
     validate = subparsers.add_parser(
         "validate",
-        help="Validate a mined or saved rule set against data.",
+        help="Validate a learned or saved rule set against data.",
         description=(
-            "Validate saved rules.json artifacts, or mine a fresh rule set first and then validate it "
+            "Validate saved rules.json artifacts, or learn a fresh rule set first and then validate it "
             "against the prepared dataset."
         ),
         formatter_class=CliFormatter,
@@ -207,7 +223,7 @@ def build_parser() -> argparse.ArgumentParser:
         "interpret",
         help="Render rules into human-readable formulas.",
         description=(
-            "Interpret saved rules.json artifacts, or mine a fresh rule set first and then print the "
+            "Interpret saved rules.json artifacts, or learn a fresh rule set first and then print the "
             "interpreted formulas."
         ),
         formatter_class=CliFormatter,
@@ -227,7 +243,7 @@ def build_parser() -> argparse.ArgumentParser:
         "entails",
         help="Check whether a query is entailed by a rule set.",
         description=(
-            "Run a theory-level entailment query against saved rules.json artifacts, or mine a fresh "
+            "Run a theory-level entailment query against saved rules.json artifacts, or learn a fresh "
             "rule set first and then ask the query."
         ),
         formatter_class=CliFormatter,
@@ -312,7 +328,7 @@ def main(argv: list[str] | None = None) -> int:
 
     miner = build_miner(args)
 
-    if args.command == "mine":
+    if args.command in {"learn", "mine"}:
         result = miner.fit(**build_fit_kwargs(args))
         write_rich_json({
             "run_dir": str(result.run_dir),
