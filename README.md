@@ -14,11 +14,12 @@ The Python package is `netnomos`. The shorter CLI alias is `netn`.
 
 ## Citation
 
-```tex
+```bibtex
 @inproceedings{he2026netnomos,
   author    = {Hongyu H{\`e} and Minhao Jin and Maria Apostolaki},
   title     = {{Making Logic a First-Class Citizen in Network Data Generation with {ML}}},
   booktitle = {23rd USENIX Symposium on Networked Systems Design and Implementation (NSDI 26)},
+  pages     = {801--824},
   year      = {2026},
 }
 ```
